@@ -1,0 +1,32 @@
+{% for rice in rices %}
+    <p>{{ rice.food_name }}</p>
+{% endfor %}
+
+<hr>
+
+{% for soup in soups %}
+    <p>{{ soup.food_name }}</p>
+{% endfor %}
+
+<hr>
+
+{% for side_dish in side_dishes %}
+    <p>{{ side_dish.food_name }}</p>
+{% endfor %}
+
+<hr>
+
+<select name="rice">
+    {% for i in form.rices.queryset %}
+        <option value="{{ i.id }}">{{ i.food_name }}</option>
+    {% endfor %}
+    <option value="3">3</option>
+    <option value="2">2</option>
+    <option value="1">1</option>
+</select>
+
+<p>{{ form.rices }}</p>
+
+{% for i in form.rices.queryset %}
+    <p>{{ i.id }}</p>
+{% endfor %}
