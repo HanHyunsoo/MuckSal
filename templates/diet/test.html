@@ -16,17 +16,10 @@
 
 <hr>
 
-<select name="rice">
-    {% for i in form.rices.queryset %}
-        <option value="{{ i.id }}">{{ i.food_name }}</option>
-    {% endfor %}
-    <option value="3">3</option>
-    <option value="2">2</option>
-    <option value="1">1</option>
-</select>
+<form action="{% url 'diet:create' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">확인</button>
+</form>
 
-<p>{{ form.rices }}</p>
-
-{% for i in form.rices.queryset %}
-    <p>{{ i.id }}</p>
-{% endfor %}
+<a href="{% url 'diet:my_meal_planner' %}">나의 식단 보러가기</a>

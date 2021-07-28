@@ -10,7 +10,7 @@ class Food(models.Model):
         ('03', '반찬')
     )
 
-    food_name = models.CharField(max_length=50)
+    food_name = models.CharField(max_length=50, unique=True)
     food_image = models.ImageField(blank=True, upload_to="food/")
     category = models.CharField(max_length=2, choices=CATEGORY_CHOICES)
     protein = models.IntegerField()
@@ -22,6 +22,9 @@ class Food(models.Model):
 
     def __str__(self):
         return self.food_name
+
+    def category_verbose(self):
+        return dict(Food.CATEGORY_CHOICES)[self.category]
 
 
 class FoodHashtag(models.Model):

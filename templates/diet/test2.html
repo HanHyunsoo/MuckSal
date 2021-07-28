@@ -1,0 +1,7 @@
+{% for planner in planners %}
+    <p>날짜: {{ planner.reg_date }}</p>
+    {% for food in planner.foods.all %}
+        <p>{{ food.category_verbose }}: {{ food.food_name }}</p>
+    {% endfor %}
+    <hr>
+{% endfor %}
