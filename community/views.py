@@ -1,8 +1,7 @@
 from django.shortcuts import render
-
+from .models import Post
 # Create your views here.
-def community(request):
-    return render(request,'community/cooktip.html')
 
-def layout(request):
-    return render(request,'community/layout.html')
+def community(request):
+    posts = Post.objects.all()
+    return render(request,'community/cooktip.html',{'posts':posts})

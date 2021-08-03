@@ -70,46 +70,15 @@
                     글 쓰기 +
                 </div>
             </div>
+            
             <div class="ccontainer">
-                <div class="container1">
-                    1
-                </div>
+            {% for posts in posts.all %}
                 <div class="container2">
-                    <div class="picture">
-                    </div>
-
-                    <div class="text">
-                        <div class="titles">
-                        영양 만점 약밥
-                        <hr>
-                        </div>
-                        <div class="heart">
-                               ♥
-                        </div>   
-                    
-                        <div class = "texts">
-                            제가 만들어 본 레시피에요. 마녀의 눈물 6스푼, 단호박, 용의 꼬리, 시계 조각맛있겠죠!
-                            <br>
-                            이 음식을 먹은 사람은 살아남은 자가 없다고 해요~ 그래서 제가 이번에 한번 만들어 보았는데요!
-                            <br>
-                            이 음식의 제조시간은 무려 4일이나 걸렸습니다. 난이도가 꽤나 있는 음식이더라고요. 
-                            <br>
-                            동굴에 들어가서 용을 잡는데만 하루가 걸렸습니다.
-                            <br>
-                            목숨도 잃을 뻔 했죠! 하지만 겨우 살아남았습니다.
-                            <br>
-                            우와ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ    
-                        </div>
-                    </div>
-                
-                    <div class="cont">
-
-                    </div>
+                    <h2>{{ posts.title}}</h2>
+                    <p>{{ posts.content}}</p>
+                    <h6>{{ posts.created_at}}</h6>
                 </div>
-            </div>
-                <div>
-
-                </div>
+            {% endfor %}
             </div>
 
             <!--footer-->
