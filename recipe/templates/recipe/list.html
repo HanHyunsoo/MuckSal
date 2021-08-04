@@ -1,0 +1,7 @@
+<h1 style="text-align: center;"> 모든 음식의 레시피를 확인해 보세요! </h1>
+<div style="text-align: center;">
+    {% for foods in foods.all %}
+    <h3> {{ foods.title }}</h3>
+    <p> {{ foods.body }}</p>
+    {% endfor %}
+</div>
