@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+    <head>
+        <link rel='stylesheet' href="{% static 'community/css/header.css'%}">
+        <link rel='stylesheet' href="{% static 'community/css/content.css'%}">
+    </head>
+    <body>
+        <div class="hheader">
+            <div id="header">
+                <h1>먹고는 살아야지</h1>
+                <div class="font">DIET</div>
+                <div class="font">COMMUNITY</div>
+                <div class="font">RECIPE</div>
+                <div class="font">MYPAGE</div>
+
+                <div class="otherfont">login</div>
+                <div class="otherfont1"> 님 </div>
+                <div class="anotherfont"> 배고파 </div>
+            </div>
+            <br>
+            <div class = "header-color"></div>
+        </div>
+
+        {% block content %}
+
+        {% endblock %}
+    </body>
+</html>

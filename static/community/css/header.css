@@ -1,0 +1,51 @@
+#header{
+    margin : 0;   
+    height: 52px;
+    background-color: white; 
+    text-align: center;
+    
+}
+.header-color {
+    height : 10px;
+    background-color : #ABD261;
+}
+body{
+    margin : 0;
+}
+h1{
+    margin : 0;
+    padding : 10px 0 0 0;
+}
+.hheader{
+    position: fixed;
+    width : 100%;
+    background-color: white;
+}
+.font{
+    font-size: 15px;
+    float : left;
+    margin : 0px 23px;
+    color: gray;
+}
+
+.otherfont{
+    font-size: 15px;
+    float : right;
+    margin : 0px 23px;
+    color: gray;
+}
+
+.otherfont1{
+    font-size: 15px;
+    float : right;
+    margin : 0px 23px 0px 0px;
+    color: gray;
+}
+
+.anotherfont {
+    font-size: 15px;
+    float : right;
+    color: gray;
+
+}
+
