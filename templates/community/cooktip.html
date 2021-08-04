@@ -1,2 +1,77 @@
 {% extends 'community/layout.html' %}
 {% load static %}
+
+
+{% block content %}
+ <!--여기 content임-->
+ <div id="contain">
+    <div class = "best_writing">
+        <div class="inner_content">
+        Best 게시물
+        </div>
+        <hr>
+    </div>
+    <br>
+    <div class="container">
+        <div>
+            <div class="ractangle">
+            </div>
+            <div class="otherfont3">2</div>
+        </div>
+
+        <div>
+            <div class="ractangle2">
+            </div>
+            <div class="otherfont3">1</div>
+        </div>
+
+        <div>
+            <div class="ractangle">
+            </div>
+            <div class="otherfont3">3</div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<!--여기부터 게시글 목록들 좌라락 나옴-->
+<div class="bigcontainer">
+    <div class="middletitle">
+        <p>
+            음식 공유 게시판
+        </p>
+        <a href="{% url 'community:create' %}" class="button">
+            글 쓰기 +
+        </a>
+    </div>
+    
+    <div class="ccontainer">
+    {% for posts in posts.all %}
+        <div class="container2">
+            <h2>{{ posts.title}}</h2>
+            <p>{{ posts.content}}</p>
+            <h6>{{ posts.created_at}}</h6>
+        </div>
+    {% endfor %}
+    </div>
+
+    <!--footer-->
+    <div class="footer">
+        <div class="serch">
+
+        </div>
+        <div class="serchbutton">
+            검색
+        </div>
+    </div>
+
+    
+    <div class="page">
+        &lt; 1 2 3 4 5 6 7 8 9  &gt;
+    </div> 
+</div>
+<br>
+
+{% endblock %}

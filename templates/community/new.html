@@ -1,0 +1,17 @@
+{% extends 'community/layout.html' %}
+{% load static %}
+
+{% block content %}
+<head>
+    <link rel='stylesheet' href="{% static 'community/css/new.css'%}">
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <table>                     
+            {{form.as_table}}           
+        </table>
+        <button type="submit">작성</button> 
+    </form>
+</body>
+{% endblock %}
