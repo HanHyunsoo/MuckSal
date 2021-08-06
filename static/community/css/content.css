@@ -1,0 +1,158 @@
+.best_writing {
+    width : 160px;
+    text-align: center;
+    align-content: center;
+}
+.container {
+    height : 200px;
+    width : 700px;
+    display : flex;
+    justify-content : space-around;
+}
+
+#contain {
+    display : flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 180px;
+}
+
+.inner_content{
+    width : 100%;
+}
+
+.ractangle{
+    width : 180px;
+    height: 180px;
+    border : 1px solid black;
+}
+
+.ractangle2{
+    width : 200px;
+    height: 200px;
+    border : 1px solid black;
+}
+
+.otherfont3{
+    font-size : 25px;
+    text-align: center;
+}
+
+.ccontainer{
+    border-collapse: collapse;
+}
+.container1{
+    display : table;
+    width : 30px;
+    height : 230px;
+    border : 1px solid gray;
+}
+.container2{
+    border : 1px solid gray;
+    width : 68%;
+    height: 230px;
+    text-align: center;
+    border-collapse: collapse;
+    margin : 0 auto;
+
+}
+
+.picture{
+    width : 200px;
+    height: 200px;
+    float : left;
+    border : 1px solid gray;
+    margin : 15px 0 15px 15px;
+}
+
+.heart{
+    float : right;
+    margin : 10px;
+    display : inline-block
+}
+
+.titles{
+    margin : 10px;
+    display: inline-block;
+    
+}
+.texts{
+    margin : 0 10px 10px 10px;
+}
+.text{
+    width : 790px;
+    float : right;
+
+}
+.texts{
+    overflow : hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width : 790px;
+    height: 158px;
+    margin : 0;
+    text-align: left;
+}
+.middletitle
+{
+    font-size: 25px;
+    color:gray;
+    width : 100%;
+    
+}
+.bigcontainer{
+    display : flex;
+    flex-direction: column;
+    margin-top : 230px;
+}
+p{
+    margin : auto 0;
+    padding-bottom : 20px;
+    text-align : center;
+}
+.button{
+    border : 1px solid #ABD261;
+    font-size : 14px;
+    width: 70px;
+    text-align: center;
+    border-radius: 5px;
+    float : right;
+    margin : 0 270px 5px 0;
+    padding : 5px;
+    text-decoration-line : none;
+}
+a:link{
+    color : gray;
+}
+a:visited{
+    color : gray;
+}
+.footer{
+    display : flex;
+    justify-content: flex-end;
+}
+
+.serch{
+    width : 300px;
+    height : 30px;
+    border : 1px solid gray;
+    border-radius : 7px;
+    margin: 50px 30px 0 0;
+    float : right;
+}
+
+.serchbutton{
+    border : 1px solid black;
+    width : auto;
+    height: 20px;
+    font-size: 15px;
+    padding : 5px;
+    margin : 50px 320px 0 0;
+    border-radius: 5px;
+}
+
+.page{
+    text-align: center;
+    font-size: 22px;
+    margin-top: 30px;
+}
