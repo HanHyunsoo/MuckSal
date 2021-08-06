@@ -1,3 +1,4 @@
+import accounts
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib import auth
@@ -29,4 +30,3 @@ def login(request):
 def logout(request):
     auth.logout(request)
     return redirect('index')
-
