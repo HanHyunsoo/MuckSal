@@ -17,10 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from . import settings
+import community.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('accounts.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('community/', include('community.urls')),
     path('diet/', include('diet.urls')),
     path('recipe/', include('recipe.urls')),
