@@ -3,10 +3,12 @@
 
 <html>
     <head>
+        <script type="text/javascript" src="{% static 'community/js/popup.js' %}"></script>
         <link rel='stylesheet' href="{% static 'community/css/header.css'%}">
         <link rel='stylesheet' href="{% static 'community/css/content.css'%}">
     </head>
     <body>
+        
         <div class="hheader">
             <div id="header">
                 <h1>먹고는 살아야지</h1>
@@ -26,5 +28,6 @@
         {% block content %}
 
         {% endblock %}
+        
     </body>
 </html>

@@ -9,6 +9,7 @@ def community(request):
     return render(request,'community/cooktip.html',{'posts':posts})
 
 def detail(request):
+    posts = Post.objects.all()
     return render(request, 'community/detail.html')
 
 def create(request):

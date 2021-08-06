@@ -1,3 +1,8 @@
+html,body{
+    width : 100%;
+    height : 100%;
+    margin : 0;
+}
 .best_writing {
     width : 160px;
     text-align: center;
@@ -56,6 +61,9 @@
     margin : 0 auto;
 
 }
+.container3{
+    width : 80%;
+}
 
 .picture{
     width : 200px;
@@ -71,10 +79,8 @@
     display : inline-block
 }
 
-.titles{
-    margin : 10px;
-    display: inline-block;
-    
+#title{
+    font-size : 25px;
 }
 .texts{
     margin : 0 10px 10px 10px;
@@ -123,6 +129,7 @@ p{
 }
 a:link{
     color : gray;
+    text-decoration: none;
 }
 a:visited{
     color : gray;
@@ -155,4 +162,43 @@ a:visited{
     text-align: center;
     font-size: 22px;
     margin-top: 30px;
+}
+
+.dimmed{
+    position : absolute;   
+    top : 0;
+    left:0;
+    width : 100%;
+    height : 100%;
+    z-index : 1;
+    background-color: rgba(0,0,0,0.3);
+    display: none;
+}
+.wrap {
+    position : absolute;
+    top : 15%;
+    left : 20%;
+    z-index : 2;
+    background-color: white;
+    height: 75%;
+    width : 60%;
+    border-radius: 5px;
+    display : none;
+}
+
+.close{
+    background-color: red;
+    width : 30px;
+    height: 30px;
+    border-radius: 3px; 
+    float : right;
+    display : flex;
+    justify-content: center;
+    
+    
+}
+
+#x{
+    font-size : 18px;
+    color:white;
 }

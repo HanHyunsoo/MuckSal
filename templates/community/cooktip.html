@@ -8,6 +8,7 @@
     <div class = "best_writing">
         <div class="inner_content">
         Best 게시물
+        <button id="title" onclick='change()'> 클릭 </button>
         </div>
         <hr>
     </div>
@@ -50,12 +51,22 @@
     <div class="ccontainer">
     {% for posts in posts.all %}
         <div class="container2">
-            <h2>{{ posts.title}}</h2>
-            <p>{{ posts.content}}</p>
-            <h6>{{ posts.created_at}}</h6>
-        </div>
+            <div class="container3">
+                {% if posts.image %}
+                <div style="display : flex; height: 100%; width : 30%; justify-content: center; align-items: center; float : left;">
+                    <img src="{{posts.image.url}}" width="200" height="200" alt="Card image cap">
+                </div>
+                {% endif %}
+                <h2><a href="{% url 'community:detail' %}">{{ posts.title}}</a></h2>
+                <p>{{ posts.content}}</p>
+                <p>{{posts.writer}}</p>
+                <h6>{{ posts.created_at}}</h6>
+            </div>
+            
+        </div>    
     {% endfor %}
     </div>
+
 
     <!--footer-->
     <div class="footer">
@@ -71,7 +82,21 @@
     <div class="page">
         &lt; 1 2 3 4 5 6 7 8 9  &gt;
     </div> 
+
+    <div class="dimmed">
+    </div>
+    <div class="wrap">
+        <div class="popup">
+
+        </div>
+        <div class= "close"  onmouseover="setCursor()">
+            <div id = "x" onclick='change1()'>
+                x
+            </div>
+        </div>
+    </div>
 </div>
 <br>
+
 
 {% endblock %}
