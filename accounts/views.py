@@ -1,4 +1,3 @@
-import accounts
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib import auth
@@ -11,8 +10,9 @@ def signup(request):
                 password=request.POST["password1"])
             auth.login(request,user)
             return render(request, 'index')
-        return render(request, 'signup.html')
-    return render(request, 'signup.html')
+        return render(request, 'registration/signup.html')
+    else:
+        return render(request, 'registration/signup.html')
 
 def login(request):
     if request.method == "POST":
