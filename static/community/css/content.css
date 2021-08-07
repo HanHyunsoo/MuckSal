@@ -43,26 +43,11 @@ html,body{
     text-align: center;
 }
 
-.ccontainer{
-    border-collapse: collapse;
-}
 .container1{
     display : table;
     width : 30px;
     height : 230px;
     border : 1px solid gray;
-}
-.container2{
-    border : 1px solid gray;
-    width : 68%;
-    height: 230px;
-    text-align: center;
-    border-collapse: collapse;
-    margin : 0 auto;
-
-}
-.container3{
-    width : 80%;
 }
 
 .picture{
@@ -71,16 +56,6 @@ html,body{
     float : left;
     border : 1px solid gray;
     margin : 15px 0 15px 15px;
-}
-
-.heart{
-    float : right;
-    margin : 10px;
-    display : inline-block
-}
-
-#title{
-    font-size : 25px;
 }
 .texts{
     margin : 0 10px 10px 10px;
@@ -116,20 +91,12 @@ p{
     padding-bottom : 20px;
     text-align : center;
 }
-.button{
-    border : 1px solid #ABD261;
-    font-size : 14px;
-    width: 70px;
-    text-align: center;
-    border-radius: 5px;
-    float : right;
-    margin : 0 270px 5px 0;
-    padding : 5px;
-    text-decoration-line : none;
-}
 a:link{
     color : gray;
     text-decoration: none;
+    font-weight: 800;
+    white-space : nowrap;
+    
 }
 a:visited{
     color : gray;
@@ -165,7 +132,7 @@ a:visited{
 }
 
 .dimmed{
-    position : absolute;   
+    position : fixed;   
     top : 0;
     left:0;
     width : 100%;
@@ -175,7 +142,7 @@ a:visited{
     display: none;
 }
 .wrap {
-    position : absolute;
+    position : fixed;
     top : 15%;
     left : 20%;
     z-index : 2;
@@ -194,6 +161,7 @@ a:visited{
     float : right;
     display : flex;
     justify-content: center;
+    margin-top : 103px;
     
     
 }
@@ -201,4 +169,86 @@ a:visited{
 #x{
     font-size : 18px;
     color:white;
+}
+
+ul {
+    list-style : none;
+}
+
+li{
+    float : left;
+    margin : 15px;
+}
+.image{
+    border : 1px solid #dfdfdf;
+    width : 200px;
+    height: 200px;
+}
+
+.title {
+    border : 1px solid #dfdfdf;
+    width : 200px;
+    height: 22px;
+    text-overflow : ellipsis;
+    overflow:  hidden;
+    border-top : none;
+    border-bottom : none;
+    
+}
+
+.another_content{
+    border : 1px solid #dfdfdf;
+    width : 200px;
+    height : 88px;
+}
+
+.ccontainer{
+    width : 1240px;
+    height : 730px;
+    margin : auto;
+    margin-top : 200px;
+}
+
+.like{
+    font-size: 12px;
+    padding : 5px;
+}
+
+.writer{
+    font-size: 12px;
+    padding :5px;
+}
+
+.container_title{
+    width : 190px;
+    height : 22;
+    white-space : nowrap;
+    text-overflow : ellipsis;
+    overflow:  hidden;
+    font-size : 15px;
+    padding : 5px;
+}
+
+.button {
+    float : right;
+    background-color: white;
+    border : 1px solid #73b41a;
+    font-size : 14px;
+    width: 70px;
+    text-align: center;
+    border-radius: 5px;
+    padding : 5px;
+    margin-right : 53px;
+}
+
+.left_image{
+    width : 70%;
+    height : 100%;
+    float : left;
+}
+
+.right_bar{
+    width :30%;
+    height : 100%;
+    float : right;
 }

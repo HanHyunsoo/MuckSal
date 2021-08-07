@@ -4,11 +4,13 @@
 
 {% block content %}
  <!--여기 content임-->
+ <p>
+    음식 공유 게시판
+</p>
  <div id="contain">
     <div class = "best_writing">
         <div class="inner_content">
-        Best 게시물
-        <button id="title" onclick='change()'> 클릭 </button>
+            Best 게시물
         </div>
         <hr>
     </div>
@@ -38,37 +40,45 @@
 
 
 <!--여기부터 게시글 목록들 좌라락 나옴-->
-<div class="bigcontainer">
-    <div class="middletitle">
-        <p>
-            음식 공유 게시판
-        </p>
+    <div class="ccontainer">
+        <ul>
+            {% for posts in posts.all %}
+            <li>
+                <div class = "image">
+                    {% if posts.image %}
+                    <div>
+                        <a href="#wrap" onclick='change()'><img src="{{posts.image.url}}" width="200" height="200" alt="이미지"></a>
+                    </div> 
+                    {% endif %}
+                </div>
+                <div class="title">
+                    <span>
+                        <div>{{posts.title}}</div>
+                    </span>
+                </div>
+                <div class="another_content">
+                    <div class="container_title">
+                        {{ posts.content }}
+                    </div>
+                    <div class="writer">
+                        {{posts.writer}}
+                    </div>
+                    <div class="like">
+                        좋아요
+                    </div>
+                </div>
+            </li>
+            {% endfor%}
+        </ul>
         <a href="{% url 'community:create' %}" class="button">
             글 쓰기 +
         </a>
     </div>
-    
-    <div class="ccontainer">
-    {% for posts in posts.all %}
-        <div class="container2">
-            <div class="container3">
-                {% if posts.image %}
-                <div style="display : flex; height: 100%; width : 30%; justify-content: center; align-items: center; float : left;">
-                    <img src="{{posts.image.url}}" width="200" height="200" alt="Card image cap">
-                </div>
-                {% endif %}
-                <h2><a href="{% url 'community:detail' %}">{{ posts.title}}</a></h2>
-                <p>{{ posts.content}}</p>
-                <p>{{posts.writer}}</p>
-                <h6>{{ posts.created_at}}</h6>
-            </div>
-            
-        </div>    
-    {% endfor %}
-    </div>
 
 
-    <!--footer-->
+
+<!--footer-->
+<div>
     <div class="footer">
         <div class="serch">
 
@@ -78,20 +88,41 @@
         </div>
     </div>
 
-    
+        
     <div class="page">
         &lt; 1 2 3 4 5 6 7 8 9  &gt;
     </div> 
+</div>
 
+<!--footer-->
+<div id="pop_up">
     <div class="dimmed">
-    </div>
-    <div class="wrap">
-        <div class="popup">
+        <div style="width : 1001px; margin: auto;">
+            <div class= "close" onclick='change1()' onmouseover="setCursor()">
+                <div id = "x">
+                    x
+                </div>
+            </div>
+            <div class="wrap">
+               <div class="left_image">
 
-        </div>
-        <div class= "close"  onmouseover="setCursor()">
-            <div id = "x" onclick='change1()'>
-                x
+               </div>
+               <div class="right_bar">
+                    <div class="side_title">
+
+                    </div>
+                    <div class="side_content">
+                        <div class="like">
+
+                        </div>
+                        <div class=" real_side_content">
+
+                        </div>
+                    </div>
+                    <div class="comment">
+
+                    </div>
+               </div> 
             </div>
         </div>
     </div>

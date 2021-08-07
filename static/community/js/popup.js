@@ -1,6 +1,3 @@
-const body = document.querySelector('body');
-let scrollPosition = 0;
-
 
 function change(){
     document.getElementsByClassName('dimmed')[0].style.display = "block";
