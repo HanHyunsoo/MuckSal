@@ -1,8 +1,19 @@
+{% if not foods %}
 
-<h2 style="text-align: center; margin-top: 50px;"> 음식의 이름을 검색해 주세요!</h2>
-<div style="text-align : center;">
-    <input type="text">
+<h1>검색 결과가 없습니다</h1>
+
+{% else %}
+
+{% for food in foods.all %}
+<div class="container"> 
+    <div class="card">
+        <div class="card-body">
+            <h1>{{ food.title }}</h1>
+            <a href="{% url 'recipe:foodinfo' food.id %}"> 자세히 보기</a> 
+        </div>
+    </div>
 </div>
-<div style="text-align: center; margin-top: 350px;">
-    <a href = "#"> 자신만의 레시피를 추가해 보세요!</a>
-</div>
+<br>
+{% endfor %}
+
+{% endif %}

@@ -3,9 +3,10 @@ import recipe.views
 
 app_name = "recipe"
 urlpatterns = [
-    path('explain/', recipe.views.explain, name="explain"),
-    path('search/', recipe.views.search, name = "serach"),
-    path('add/', recipe.views.add, name = "add"),
-    path('list/', recipe.views.list, name = "list"),
-    path('add/create/', recipe.views.create, name = "create"),
+    path('foodinfo/<str:foodid>/', recipe.views.foodinfo, name = 'foodinfo'),
+    path('list/', recipe.views.list, name = 'list'),
+    path('new/', recipe.views.new, name = 'new'),
+    path('create/', recipe.views.create, name ='create'),
+    path('search/', recipe.views.search, name='search'),
+    path('postcreate/', recipe.views.postcreate, name='postcreate'),
 ]
