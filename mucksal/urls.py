@@ -18,10 +18,12 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from . import settings
-import community.views
+import accounts.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', accounts.views.index, name='index'),
+    path('accounts/', include('accounts.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('community/', include('community.urls')),
     path('diet/', include('diet.urls')),
