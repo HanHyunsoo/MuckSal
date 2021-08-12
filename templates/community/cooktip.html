@@ -3,11 +3,14 @@
 
 
 {% block content %}
- <!--여기 content임-->
- <div id="contain">
-    <div class = "best_writing">
+<!--여기 content임-->
+<p>
+    음식 공유 게시판
+</p>
+<div id="contain">
+    <div class="best_writing">
         <div class="inner_content">
-        Best 게시물
+            Best 게시물
         </div>
         <hr>
     </div>
@@ -37,27 +40,54 @@
 
 
 <!--여기부터 게시글 목록들 좌라락 나옴-->
-<div class="bigcontainer">
-    <div class="middletitle">
-        <p>
-            음식 공유 게시판
-        </p>
-        <a href="{% url 'community:create' %}" class="button">
-            글 쓰기 +
-        </a>
-    </div>
-    
-    <div class="ccontainer">
-    {% for posts in posts.all %}
-        <div class="container2">
-            <h2>{{ posts.title}}</h2>
-            <p>{{ posts.content}}</p>
-            <h6>{{ posts.created_at}}</h6>
-        </div>
-    {% endfor %}
-    </div>
+<div class="ccontainer">
+        <ul>
+            {% for posts in posts.all %}
+            <li>
+                <a href="{% url 'community:detail' posts.id %}">
+                    <div class="image">
+                        {% if posts.image %}
 
-    <!--footer-->
+                        <div id="images">
+                            <img src="{{posts.image.url}}" width="200" height="200" alt="이미지">
+                        </div>
+
+                        {% endif %}
+                    </div>
+                </a>
+
+                <div class="title">
+                    <span>
+                        <div>{{posts.title}}</div>
+                    </span>
+                </div>
+                <div class="another_content">
+                    <div class="container_title">
+                        {{ posts.content }}
+                    </div>
+                    <div class="writer">
+                        {{posts.writer}}
+                    </div>
+                    <div class="like">
+                        좋아요
+                    </div>
+                </div>
+            </li>
+            {% endfor%}
+        </ul>
+</div>
+
+
+
+<a href="{% url 'community:create' %}" class="button">
+    글 쓰기 +
+</a>
+
+
+
+
+<!--footer-->
+<div>
     <div class="footer">
         <div class="serch">
 
@@ -67,11 +97,55 @@
         </div>
     </div>
 
-    
+
     <div class="page">
-        &lt; 1 2 3 4 5 6 7 8 9  &gt;
-    </div> 
+        {% if blogs.has_previous %}
+        <a href="?page=1">맨 앞으로</a>
+        <a href="?page={{blogs.previous_page_number}}">이전으로</a>
+        {% endif  %}
+        <span>{{blogs.number}}</span>
+        <span>/</span>
+        <span>{{blogs.paginator.num_pages}}</span>
+        {% if blogs.has_next %}
+        <a href="?page={{blogs.next_page_number}}">다음으로</a>
+        <a href="?page={{blogs.paginator.num_pages}}">맨 뒤로</a>
+        {% endif %}
+    </div>
 </div>
+
+<!--modal-->
+<div class="dimmed">
+    <div style="width : 1001px; margin: auto;">
+        <div class="close" onclick="change1()" onmouseover="setCursor()">
+            <div id="x">
+                x
+            </div>
+        </div>
+        <div class="wrap">
+            <div class="left_image">
+                <img src="{{post.image.url}}" width="200" height="200" alt="이미지">
+            </div>
+            <div class="right_bar">
+                <div class="side_title">
+
+                </div>
+                <div class="side_content">
+                    <div class="like">
+
+                    </div>
+                    <div class=" real_side_content">
+
+                    </div>
+                </div>
+                <div class="comment">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <br>
+
 
 {% endblock %}

@@ -1,5 +1,4 @@
 #header{
-    margin : 0;   
     height: 52px;
     background-color: white; 
     text-align: center;
@@ -20,6 +19,7 @@ h1{
     position: fixed;
     width : 100%;
     background-color: white;
+    top : 0;
 }
 .font{
     font-size: 15px;

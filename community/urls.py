@@ -5,5 +5,6 @@ app_name = "community"
 urlpatterns = [
     path('', community.views.community, name='community'),
     path('new/create/', community.views.create, name ="create"),
-    path('detail/', community.views.detail, name="detail"),
+    path('detail/<str:id>/', community.views.detail , name = "detail"),
+
 ]
