@@ -1,0 +1,106 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'diet/create.css' %}">
+
+{% block content %}
+    <div id="main">
+        <div id="meal_planner">
+            <div id="rice"><img id="rice-img" alt="선택 안함" style="display: none"></div>
+            <div id="soup"><img id="soup-img" alt="선택 안함" style="display: none"></div>
+            <div id="side_dish1"><img id="side_dish1-img" alt="선택 안함" style="display: none"></div>
+            <div id="side_dish2"><img id="side_dish2-img" alt="선택 안함" style="display: none"></div>
+            <div id="side_dish3"><img id="side_dish3-img" alt="선택 안함" style="display: none"></div>
+        </div>
+
+        <form action="{% url 'diet:create' %}" method="post">
+            {% csrf_token %}
+            <div class="hide_content" style="display: none">{{ form.as_p }}</div>
+            <p>{{ error_message }}</p>
+            <button type="submit">확인</button>
+        </form>
+
+        <ul class="tabs">
+            <li class="tab">
+                <input type="radio" id="tab-1" name="tab-group-1" checked>
+                <label for="tab-1">밥</label>
+                <div class="content">
+                    <p id="0" class="rice" onclick="checkFood(this)">선택 안함</p>
+                    {% for rice in rices %}
+                        <p id="{{ rice.id }}" class="rice" onclick="checkFood(this)">{{ rice.food_name }}</p>
+                    {% endfor %}
+                </div>
+            </li>
+            <li class="tab">
+                <input type="radio" id="tab-2" name="tab-group-1">
+                <label for="tab-2">국</label>
+                <div class="content">
+                    <p id="0" class="soup" onclick="checkFood(this)">선택 안함</p>
+                    {% for soup in soups %}
+                        <p id="{{ soup.id }}" class="soup" onclick="checkFood(this)">{{ soup.food_name }}</p>
+                    {% endfor %}
+                </div>
+            </li>
+            <li class="tab">
+                <input type="radio" id="tab-3" name="tab-group-1">
+                <label for="tab-3">반찬 1</label>
+                <div class="content">
+                    <p id="0" class="side_dish1" onclick="checkFood(this)">선택 안함</p>
+                    {% for side_dish in side_dishes %}
+                        <p id="{{ side_dish.id }}" class="side_dish1" onclick="checkFood(this)">{{ side_dish.food_name }}</p>
+                    {% endfor %}
+                </div>
+            </li>
+            <li class="tab">
+                <input type="radio" id="tab-4" name="tab-group-1">
+                <label for="tab-4">반찬 2</label>
+                <div class="content">
+                    <p id="0" class="side_dish2" onclick="checkFood(this)">선택 안함</p>
+                    {% for side_dish in side_dishes %}
+                        <p id="{{ side_dish.id }}" class="side_dish2" onclick="checkFood(this)">{{ side_dish.food_name }}</p>
+                    {% endfor %}
+                </div>
+            </li>
+            <li class="tab">
+                <input type="radio" id="tab-5" name="tab-group-1">
+                <label for="tab-5">반찬 3</label>
+                <div class="content">
+                    <p id="0" class="side_dish3" onclick="checkFood(this)">선택 안함</p>
+                    {% for side_dish in side_dishes %}
+                        <p id="{{ side_dish.id }}" class="side_dish3" onclick="checkFood(this)">{{ side_dish.food_name }}</p>
+                    {% endfor %}
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        const imageUrls = {};
+        {% for food in foods %}
+            {% if food.food_image %}
+                imageUrls["{{ food.id }}"] = "/media/{{ food.food_image }}";
+            {% else %}
+                imageUrls["{{ food.id }}"] = "/static/diet/not found img.png";
+            {% endif %}
+        {% endfor %}
+        function checkFood(domObject) {
+            {#선택 안함을 선택할 시#}
+            if (domObject.id === "0") {
+                document.getElementById("id_" + domObject.className).value = "";
+                {# 선택 안함을 해서 그에 맞는 이미지 링크로 바꾸고 대체하고 display:none 속성 삭제 #}
+                let imageObject = document.getElementById(domObject.className + "-img");
+                imageObject.src = "/static/diet/unchecked.png";
+                imageObject.alt = "선택 안함"
+                imageObject.title = "선택 안함"
+                imageObject.style.removeProperty("display");
+            } else { {# 음식들을 선택할 시 #}
+                {#클릭한 정보를 바탕으로 폼에있는 value값을 바꿈#}
+                document.getElementById("id_" + domObject.className).value = domObject.id;
+                {#그리고 선택한 음식의 종류에 연관한 이미지 태그에 그 음식의 이미지로 대체하고 display:none 속성 삭제#}
+                let imageObject = document.getElementById(domObject.className + "-img");
+                imageObject.src = imageUrls[domObject.id];
+                imageObject.alt = document.getElementById("id_" + domObject.className).options[document.getElementById("id_" + domObject.className).selectedIndex].text
+                imageObject.title = document.getElementById("id_" + domObject.className).options[document.getElementById("id_" + domObject.className).selectedIndex].text
+                imageObject.style.removeProperty("display");
+            }
+        }
+    </script>
+{% endblock content %}

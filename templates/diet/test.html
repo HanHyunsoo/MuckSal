@@ -16,6 +16,10 @@
 
 <hr>
 
+{% if error_message %}
+    <p>{{ error_message }}</p>
+{% endif %}
+
 <form action="{% url 'diet:create' %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
