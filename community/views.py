@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404, render,redirect
 from django.utils import timezone
+from django.http.response import HttpResponse
 from .models import Post
 from .forms import CreateForm,CommentForm
 from django.http import request
@@ -7,11 +8,12 @@ from django.core.paginator import Paginator
 # Create your views here.
 
 def community(request):
-    posts = Post.objects.all().order_by('-pk')
+    post = Post.objects
+    posts = Post.objects.all()
     page = request.GET.get('page')
-    paginator = Paginator(posts, 5)
-    blogs = paginator.get_page(page)
-    return render(request,'community/cooktip.html',{'posts':posts ,'blogs':blogs})
+    paginator = Paginator(posts, 10)
+    boards = paginator.get_page(page)
+    return render(request,'community/cooktip.html',{'posts':posts,'boards':boards})
 
 
 def new(request):
@@ -42,3 +44,23 @@ def detail(request, id):
     else:
         form = CommentForm()
         return render(request, "community/detail.html", {'post':post, 'form':form})
+
+#like
+def like(request, id):
+    if not request.user.is_active:
+        return HttpResponse('로그인 해주세요')
+    
+    post = get_object_or_404(Post, id = id)
+    user = request.user
+
+    if post.likes.filter(id = user.id).exists():
+        post.likes.remove(user)
+        post.rank -=1
+        post.save()
+
+    else:
+        post.likes.add(user)
+        post.rank +=1
+        post.save()
+
+    return redirect('community:detail', id = post.id)

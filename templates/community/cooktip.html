@@ -41,8 +41,8 @@
 
 <!--여기부터 게시글 목록들 좌라락 나옴-->
 <div class="ccontainer">
+    {% for posts in posts.all %}
         <ul>
-            {% for posts in posts.all %}
             <li>
                 <a href="{% url 'community:detail' posts.id %}">
                     <div class="image">
@@ -73,8 +73,8 @@
                     </div>
                 </div>
             </li>
-            {% endfor%}
         </ul>
+    {% endfor%}
 </div>
 
 
@@ -99,17 +99,19 @@
 
 
     <div class="page">
-        {% if blogs.has_previous %}
-        <a href="?page=1">맨 앞으로</a>
-        <a href="?page={{blogs.previous_page_number}}">이전으로</a>
-        {% endif  %}
-        <span>{{blogs.number}}</span>
-        <span>/</span>
-        <span>{{blogs.paginator.num_pages}}</span>
-        {% if blogs.has_next %}
-        <a href="?page={{blogs.next_page_number}}">다음으로</a>
-        <a href="?page={{blogs.paginator.num_pages}}">맨 뒤로</a>
+        {% if boards.has_previous %}
+        <a href="?page=1">First</a>
+        <a href="?page={{boards.previous_page_number}}">Previous</a>
         {% endif %}
+
+        <span>{{boards.number}}</span>
+        <span>of/</span>
+        <span>{{boards.paginator.num_pages}}</span>
+
+        {%if boards.has_next%}
+        <a href="?page={{boards.next_page_number}}">Next</a>
+        <a href="?page={{boards.paginator.num_pages}}">Last</a>
+        {%endif%}
     </div>
 </div>
 
