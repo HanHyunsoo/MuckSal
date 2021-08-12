@@ -27,8 +27,7 @@ def signup(request):
 
             #저장
             user.save()
-
-        return render(request,'registration/index.html',res_data)
+        return render(request,'diet/create.html',res_data)
 
 
 def login(request):

@@ -10,17 +10,23 @@
     <body>
         
         <div class="hheader">
-            <div id="header">
-                <img src="{% static 'images/logo.png'%}" alt="먹고는 살아야지">
-                <div class="font">DIET</div>
-                <div class="font"><a href="{% url 'community:community' %}">COMMUNITY</a></div>
-                <div class="font">RECIPE</div>
-                <div class="font">MYPAGE</div>
-
-                <div class="otherfont">login</div>
-                <div class="otherfont1"> 님 </div>
-                <div class="anotherfont"> 배고파 </div>
-            </div>
+                <img class="logo1" src="{% static 'images/logo.png'%}" alt="먹고는 살아야지">
+        
+                <div class="po">
+                    
+                    <div>
+                        <div class="font">DIET</div>
+                        <div class="font"><a href="{% url 'community:community' %}">COMMUNITY</a></div>
+                        <div class="font">RECIPE</div>
+                        <div class="font">MYPAGE</div>
+                    </div>
+                
+                    <div>
+                        <div class="otherfont">login</div>
+                        <div class="otherfont1"> 님 </div>
+                        <div class="anotherfont"> 배고파 </div>
+                    </div>
+                </div>
             <br>
             <div class = "header-color"></div>
         </div>
