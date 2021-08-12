@@ -1,7 +1,25 @@
-<h1 style="text-align: center;"> 모든 음식의 레시피를 확인해 보세요! </h1>
-<div style="text-align: center;">
-    {% for foods in foods.all %}
-    <h3> {{ foods.title }}</h3>
-    <p> {{ foods.body }}</p>
-    {% endfor %}
-</div>
+{% extends 'recipe/base.html'%}
+{% block content %}
+<html>
+    <head>
+        <title>음식 목록</title>
+    </head>
+    <body>
+        <h1>게시판 페이지입니다</h1>
+
+
+        {% for foods in foods.all %}
+            <div style="margin: 100px; float: left;">
+            <a href="{% url 'recipe:foodinfo' foods.id %}">{{ foods.title }}</a>
+            </div>
+        {% endfor %}
+
+    </body>
+</html>
+<a href="{% url 'recipe:create' %}"> 작성하기 </a>
+<form class="form-inline my-2 my-lg-0" action="{% url 'recipe:search' %}" method="post">
+    {% csrf_token %}
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q" value="{{q}}">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+{% endblock %}
