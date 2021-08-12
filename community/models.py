@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from accounts.models import *
 
 # Create your models here.
 
@@ -9,7 +10,8 @@ class Post(models.Model):
     image = models.ImageField(upload_to = 'images/', blank=True)
     writer = models.CharField(max_length=15, default='닉네임을 입력해주세요')
     created_at = models.DateTimeField('date published')
-    likes = models.ManyToManyField()
+    likes = models.ManyToManyField(settings.AUTH_USER_MODEL,blank=True, related_name = 'like')
+    rank = models.IntegerField(default=0)
 
     def __str__(self):
         return self.title
