@@ -7,6 +7,7 @@ function change(){
     body.style.position = 'fixed';
     body.style.top = `-${scrollPosition}px`;
     body.style.width = '100%';
+
 }
 
 function change1(){

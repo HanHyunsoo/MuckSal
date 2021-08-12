@@ -3,12 +3,12 @@
 
 
 {% block content %}
- <!--여기 content임-->
- <p>
+<!--여기 content임-->
+<p>
     음식 공유 게시판
 </p>
- <div id="contain">
-    <div class = "best_writing">
+<div id="contain">
+    <div class="best_writing">
         <div class="inner_content">
             Best 게시물
         </div>
@@ -40,17 +40,22 @@
 
 
 <!--여기부터 게시글 목록들 좌라락 나옴-->
-    <div class="ccontainer">
+<div class="ccontainer">
         <ul>
             {% for posts in posts.all %}
             <li>
-                <div class = "image">
-                    {% if posts.image %}
-                    <div>
-                        <a href="#wrap" onclick='change()'><img src="{{posts.image.url}}" width="200" height="200" alt="이미지"></a>
-                    </div> 
-                    {% endif %}
-                </div>
+                <a href="{% url 'community:detail' posts.id %}">
+                    <div class="image">
+                        {% if posts.image %}
+
+                        <div id="images">
+                            <img src="{{posts.image.url}}" width="200" height="200" alt="이미지">
+                        </div>
+
+                        {% endif %}
+                    </div>
+                </a>
+
                 <div class="title">
                     <span>
                         <div>{{posts.title}}</div>
@@ -70,10 +75,14 @@
             </li>
             {% endfor%}
         </ul>
-        <a href="{% url 'community:create' %}" class="button">
-            글 쓰기 +
-        </a>
-    </div>
+</div>
+
+
+
+<a href="{% url 'community:create' %}" class="button">
+    글 쓰기 +
+</a>
+
 
 
 
@@ -88,45 +97,54 @@
         </div>
     </div>
 
-        
+
     <div class="page">
-        &lt; 1 2 3 4 5 6 7 8 9  &gt;
-    </div> 
+        {% if blogs.has_previous %}
+        <a href="?page=1">맨 앞으로</a>
+        <a href="?page={{blogs.previous_page_number}}">이전으로</a>
+        {% endif  %}
+        <span>{{blogs.number}}</span>
+        <span>/</span>
+        <span>{{blogs.paginator.num_pages}}</span>
+        {% if blogs.has_next %}
+        <a href="?page={{blogs.next_page_number}}">다음으로</a>
+        <a href="?page={{blogs.paginator.num_pages}}">맨 뒤로</a>
+        {% endif %}
+    </div>
 </div>
 
-<!--footer-->
-<div id="pop_up">
-    <div class="dimmed">
-        <div style="width : 1001px; margin: auto;">
-            <div class= "close" onclick='change1()' onmouseover="setCursor()">
-                <div id = "x">
-                    x
-                </div>
+<!--modal-->
+<div class="dimmed">
+    <div style="width : 1001px; margin: auto;">
+        <div class="close" onclick="change1()" onmouseover="setCursor()">
+            <div id="x">
+                x
             </div>
-            <div class="wrap">
-               <div class="left_image">
+        </div>
+        <div class="wrap">
+            <div class="left_image">
+                <img src="{{post.image.url}}" width="200" height="200" alt="이미지">
+            </div>
+            <div class="right_bar">
+                <div class="side_title">
 
-               </div>
-               <div class="right_bar">
-                    <div class="side_title">
-
-                    </div>
-                    <div class="side_content">
-                        <div class="like">
-
-                        </div>
-                        <div class=" real_side_content">
-
-                        </div>
-                    </div>
-                    <div class="comment">
+                </div>
+                <div class="side_content">
+                    <div class="like">
 
                     </div>
-               </div> 
+                    <div class=" real_side_content">
+
+                    </div>
+                </div>
+                <div class="comment">
+
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 <br>
 
 

@@ -1,3 +1,75 @@
 {% extends 'community/layout.html' %}
 {% load static %}
 
+{% block content %}
+<head>
+    <link rel='stylesheet' href="{% static 'community/css/detail.css'%}">
+</head>
+<body>
+    <div class = "detail_content">
+        <h2> {{ post.title }} </h2>
+
+        <div class="content_highbar">
+            <div class="name_time">
+                <div class="content_highbar1">{{post.writer}} |</div>
+                <div class="content_highbar2">{{ post.created_at }}</div>
+            </div>
+            <div class="like_menu">
+                <div class="content_highbar3">
+                    {% for post in posts %}
+                    <!-- 좋아요 버튼 -->
+                    <a href="{% url 'posts:like_post' post.id %}">
+                        {% if user in post.like_users.all %}
+                        <i class="fas fa-heart"></i>
+                        {% else %}
+                        <i class="far fa-heart"></i>
+                        {% endif %}
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+            <br>
+            <br>
+            <hr>
+        </div>     
+    </div>
+    <div>  
+        <div class="small_content"> 
+            {% if post.image %}
+                    <img src="{{post.image.url}}" alt="이미지">
+            {% endif %}
+            <br>
+            {{ post.content }} 
+        </div>
+    </div>
+
+
+    <br>
+    <br>
+    <br>
+
+    <div class="comment">
+        <div>
+            <form method="POST" action="{% url 'community:detail' post.id %}">
+                {% csrf_token %}
+                <div class="form">{{form.as_p}}</div>
+                <input type="submit" value="submit">
+            </form>
+        </div>
+        {% for comment in post.comments.all %}
+            <br>
+            <div>
+                    {{post.writer}}
+                <br>
+                └
+                <div>
+                    {{comment.text}}
+                </div>
+            </div>
+            <br>
+            <hr>
+        {% endfor %}
+    </div>
+
+</body>
+{% endblock %}
