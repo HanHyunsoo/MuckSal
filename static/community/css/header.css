@@ -1,7 +1,4 @@
 #header{
-    height: 52px;
-    background-color: white; 
-    text-align: center;
     
 }
 .header-color {
@@ -15,11 +12,17 @@ h1{
     margin : 0;
     padding : 10px 0 0 0;
 }
+.logo1{
+    width:180px;
+    text-align: center;
+}
 .hheader{
     position: fixed;
-    width : 100%;
+    width : 1688px;
     background-color: white;
-    top : 0;
+    padding-top : 5px;
+    text-align: center;
+    top : 0px;
 }
 .font{
     font-size: 15px;
