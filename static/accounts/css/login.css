@@ -1,0 +1,52 @@
+body{
+    font-family: 'NanumSquare',sans-serif;
+    font-weight: 300;
+    padding: 30pt;
+    margin: 30pt;
+    text-align: center;
+}
+
+
+form{
+    display: inline-block;
+}
+
+
+input{
+    width: 200pt;
+    height: 25pt;
+    margin-bottom: 5pt;
+    border-radius: 50px;
+    font-size: 20px;
+    text-align: center;
+    border:1pt solid gray;
+}
+
+
+img {
+    width: 370px; 
+    height: 370px; 
+    padding:0px auto; 
+    margin: 0px auto;
+}
+
+button{
+    margin-top: 15pt;
+    font-size: 20px;
+    width: 130pt;
+    padding: 6pt;
+    border-radius: 50px;
+    background-color: white;
+    border: 2px solid #4FB63F;
+}
+
+button:hover {
+    background-color: #4FB63F;
+    transition-duration: 0.4s;
+    color: white;
+    border: 2px solid;
+    cursor:pointer;
+}
+
+a { color: gray; text-decoration: none;}
+a:hover { color: rgb(255, 121, 43); text-decoration: underline; cursor:pointer;}
