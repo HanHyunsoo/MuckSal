@@ -26,6 +26,7 @@ body{
 .mainimg{
     height: auto;
     max-width: 8%;
+    margin: 0;
 }
 .logo1{
     text-align: center;
@@ -68,15 +69,9 @@ body{
 }
 
 
-
-a:link{
-    color : gray;
-    text-decoration: none;
-    /* font-weight: 100; */
-    white-space : nowrap;
-
-    
-}
+a { color: gray; text-decoration: none;}
+a:link{color: rgb(255, 121, 43); text-decoration: underline; cursor:pointer;}
+a:hover { color: rgb(255, 121, 43); text-decoration: underline; cursor:pointer;}
 a:visited{
     color : gray;
 }

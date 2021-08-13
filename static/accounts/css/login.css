@@ -1,8 +1,4 @@
 body{
-    font-family: 'NanumSquare',sans-serif;
-    font-weight: 300;
-    padding: 30pt;
-    margin: 30pt;
     text-align: center;
 }
 
@@ -24,10 +20,11 @@ input{
 
 
 img {
-    width: 370px; 
-    height: 370px; 
-    padding:0px auto; 
-    margin: 0px auto;
+    width: auto;
+    height: 210pt;
+    margin-top: 90pt;
+    margin-bottom: 30pt;
+    margin-right: 10pt;
 }
 
 button{
@@ -47,6 +44,3 @@ button:hover {
     border: 2px solid;
     cursor:pointer;
 }
-
-a { color: gray; text-decoration: none;}
-a:hover { color: rgb(255, 121, 43); text-decoration: underline; cursor:pointer;}

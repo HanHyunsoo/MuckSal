@@ -1,5 +1,11 @@
 #frame {text-align: center; margin: 0 auto;}
-img {width: 450px; height: 445px; padding:0px ; margin: 0px ;}
+img {width: auto;
+    height: 250pt;
+    padding: 0px;
+    margin-top: 40pt;
+    margin-right: 10pt;
+}
+    
 body, button{
     font-family: 'NanumSquare',sans-serif;
     font-weight: 300;

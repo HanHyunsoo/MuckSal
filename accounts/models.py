@@ -9,6 +9,7 @@ class User(AbstractUser):
     phone_number = models.CharField(max_length=20)
     useremail = models.EmailField(max_length=128)
     is_premium = models.BooleanField(default=False)
+    nickname = models.CharField(max_length=20, unique=True)
     register_dttm = models.DateField(auto_now=True, verbose_name="가입날짜")
     def __str__(self): #데이터가 문자열 변환될 때 어떻게 나오는 지 보려고
         return self.username
