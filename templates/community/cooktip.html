@@ -41,13 +41,12 @@
 
 <!--여기부터 게시글 목록들 좌라락 나옴-->
 <div class="ccontainer">
-    {% for posts in posts.all %}
+    {% for posts in boards %}
         <ul>
             <li>
                 <a href="{% url 'community:detail' posts.id %}">
                     <div class="image">
                         {% if posts.image %}
-
                         <div id="images">
                             <img src="{{posts.image.url}}" width="200" height="200" alt="이미지">
                         </div>
