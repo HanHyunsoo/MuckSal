@@ -1,10 +1,10 @@
 from django import forms
-from .models import Post
+from .models import Post,Comment
 
-class CreateForm(forms.ModelForm):
-    title = forms.CharField(widget=forms.Textarea, label='')
-    content = forms.CharField(widget=forms.Textarea, label='')
-    
+
+
+class CommentForm(forms.ModelForm):
+    Comment = forms.CharField(max_length=200, label="댓글") 
     class Meta:
-        model = Post
-        fields = ['title','content']
+        model = Comment
+        fields = ['text']

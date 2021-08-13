@@ -50,3 +50,23 @@ def create_meal_planner(request):
 def check_my_meal_planners(request):
     my_meal_planners = MealPlanner.objects.filter(user=request.user)
     return render(request, 'diet/test2.html', {'planners': my_meal_planners})
+
+#
+# def test(request):
+#     rices = Food.objects.all().filter(category="01").order_by("?")
+#     soups = Food.objects.all().filter(category="02").order_by("?")
+#     side_dishes = Food.objects.all().filter(category="03").order_by("?")
+#     foods = Food.objects.all()
+#     error_message = ""
+#     form = MealPlannerFoodListForm()
+#
+#     context = {
+#         "rices": rices,
+#         "soups": soups,
+#         "side_dishes": side_dishes,
+#         "foods": foods,
+#         "form": form,
+#         "error_message": error_message,
+#     }
+#
+#     return render(request, 'diet/create.html', context)

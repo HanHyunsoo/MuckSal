@@ -1,0 +1,19 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css">
+    <link rel='stylesheet' href="{% static 'accounts/css/index.css'%}">
+    <title>먹고는 살아야지</title>
+</head>
+<body>
+    <section id="frame">
+        <img src = "{% static 'accounts/images/Logo.png' %}">
+        <div id="name"><p>먹고는 살아야지</p></div>
+        <button type="button" onclick="location.href='/accounts/login'" >로그인</button>
+        <div class="non_member"><p>비회원으로 이용하기</p></div>
+    </section>
+</body>
+</html>
+

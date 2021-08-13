@@ -1,0 +1,22 @@
+.form {
+    display : flex;
+    justify-content : center;
+    padding-top : 200px;
+}
+
+#id_title {
+    border : none;
+    resize : none;
+}
+
+#id_content {
+    resize : none;
+    width : 800px;
+    height : 500px;
+    border-radius : 4px;
+}
+
+#id_writer {
+    border : none;
+    resize : none;
+}

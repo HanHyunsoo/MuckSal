@@ -1,13 +1,19 @@
 {% extends 'community/layout.html' %}
 {% load static %}
 
+{% block extrahead %}
+    <link rel='stylesheet' href="{% static 'community/css/content.css'%}">   
+{% endblock %}
 
 {% block content %}
- <!--여기 content임-->
- <div id="contain">
-    <div class = "best_writing">
+<!--여기 content임-->
+<p>
+    음식 공유 게시판
+</p>
+<div id="contain">
+    <div class="best_writing">
         <div class="inner_content">
-        Best 게시물
+            Best 게시물
         </div>
         <hr>
     </div>
@@ -15,6 +21,7 @@
     <div class="container">
         <div>
             <div class="ractangle">
+                
             </div>
             <div class="otherfont3">2</div>
         </div>
@@ -37,41 +44,112 @@
 
 
 <!--여기부터 게시글 목록들 좌라락 나옴-->
-<div class="bigcontainer">
-    <div class="middletitle">
-        <p>
-            음식 공유 게시판
-        </p>
-        <a href="{% url 'community:create' %}" class="button">
-            글 쓰기 +
-        </a>
-    </div>
-    
-    <div class="ccontainer">
-    {% for posts in posts.all %}
-        <div class="container2">
-            <h2>{{ posts.title}}</h2>
-            <p>{{ posts.content}}</p>
-            <h6>{{ posts.created_at}}</h6>
-        </div>
-    {% endfor %}
-    </div>
+<div class="ccontainer">
+    {% for posts in boards %}
+        <ul>
+            <li>
+                <a href="{% url 'community:detail' posts.id %}">
+                    <div class="image">
+                        {% if posts.image %}
+                        <div id="images">
+                            <img src="{{posts.image.url}}" width="200" height="200" alt="이미지">
+                        </div>
 
-    <!--footer-->
+                        {% endif %}
+                    </div>
+                </a>
+
+                <div class="title">
+                    <span>
+                        <div>{{posts.title}}</div>
+                    </span>
+                </div>
+                <div class="another_content">
+                    <div class="container_title">
+                        {{ posts.content }}
+                    </div>
+                    <div class="writer">
+                        {{posts.writer}}
+                    </div>
+                    <div class="like">
+                        좋아요
+                    </div>
+                </div>
+            </li>
+        </ul>
+    {% endfor%}
+</div>
+
+<div class="button_contain">
+    <a href="{% url 'community:new' %}" class="button">
+        글 쓰기 +
+    </a>
+</div>
+<br>
+<br>
+<!--footer-->
+<div>  
     <div class="footer">
         <div class="serch">
 
         </div>
-        <div class="serchbutton">
-            검색
+        <div class="search">
+            <div class="serchbutton">
+                검색
+            </div>
         </div>
     </div>
-
-    
-    <div class="page">
-        &lt; 1 2 3 4 5 6 7 8 9  &gt;
-    </div> 
 </div>
+
+<div class="page">
+    {% if boards.has_previous %}
+    <a href="?page=1">First</a>
+    <a href="?page={{boards.previous_page_number}}">Previous</a>
+    {% endif %}
+
+    <span>{{boards.number}}</span>
+    <span>of/</span>
+    <span>{{boards.paginator.num_pages}}</span>
+
+    {%if boards.has_next%}
+    <a href="?page={{boards.next_page_number}}">Next</a>
+    <a href="?page={{boards.paginator.num_pages}}">Last</a>
+    {%endif%}
+</div>
+
+<!--modal-->
+<div class="dimmed">
+    <div style="width : 1001px; margin: auto;">
+        <div class="close" onclick="change1()" onmouseover="setCursor()">
+            <div id="x">
+                x
+            </div>
+        </div>
+        <div class="wrap">
+            <div class="left_image">
+                <img src="{{post.image.url}}" width="200" height="200" alt="이미지">
+            </div>
+            <div class="right_bar">
+                <div class="side_title">
+
+                </div>
+                <div class="side_content">
+                    <div class="like">
+
+                    </div>
+                    <div class=" real_side_content">
+
+                    </div>
+                </div>
+                <div class="comment">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <br>
+
 
 {% endblock %}
