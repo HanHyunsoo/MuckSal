@@ -1,5 +1,5 @@
 from django import forms
-from .models import User #DB와 데이터 비교위한 참조
+from .models import User,Profile #DB와 데이터 비교위한 참조
 from django.contrib.auth.hashers import check_password #페스워드 비교위한 참조
 
 class LoginForm(forms.Form):
@@ -26,3 +26,12 @@ class LoginForm(forms.Form):
                 self.add_error('password','비밀번호가 틀렸습니다.') #password 필드에 에러메세지 추가
             else: #일치하면
                 self.user_id = user.id #현재 일치하는 user에 pk(즉 id)를 user_id 변수로 생성
+
+class ProfileForm(forms.models.ModelForm):
+    nickname = forms.CharField(label="별명", required=False)
+    description = forms.CharField(label="자기소개", required=False,widget=forms.Textarea())
+    image = forms.ImageField(label="이미지",required=False)
+
+    class Meta:
+        model = Profile
+        fields = ['nickname','description','image',]

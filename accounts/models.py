@@ -6,7 +6,6 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     username = models.CharField(max_length=32, unique=True)
     password=models.CharField(max_length=64)
-    phone_number = models.CharField(max_length=20)
     useremail = models.EmailField(max_length=128)
     is_premium = models.BooleanField(default=False)
     register_dttm = models.DateField(auto_now=True, verbose_name="가입날짜")
@@ -16,3 +15,9 @@ class User(AbstractUser):
     class Meta:
         db_table = 'user_table'
         verbose_name = 'user'
+
+class Profile(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    nickname = models.CharField(max_length=20)
+    description = models.TextField(blank=True)
+    image = models.ImageField(blank=True)

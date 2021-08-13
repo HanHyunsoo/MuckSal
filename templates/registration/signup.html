@@ -24,7 +24,7 @@
         <br>
         <div class="row mt-5">
             <div class="col-12">
-                <form method="POST" action=".">
+                <form method="POST" action="{% url 'accounts:signup' %}">
                     {% csrf_token %}
                     <div class="form-group">
                         <label for="username">아이디를 입력하세요</label>

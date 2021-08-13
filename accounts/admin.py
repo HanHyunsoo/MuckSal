@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User
+from .models import User,Profile
 
 # Register your models here.
 class AccountsAdmin(admin.ModelAdmin):
@@ -7,3 +7,4 @@ class AccountsAdmin(admin.ModelAdmin):
     list_display = ('username','password','useremail')
 
 admin.site.register(User,AccountsAdmin)
+admin.site.register(Profile)
