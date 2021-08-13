@@ -1,3 +1,6 @@
+{% extends 'recipe/base.html'%}
+{% block content %}
+<div style="text-align: center;">
 <section class = "page-section" id = "services">
     <div class ="container px-4 px-lg-5">
         <h2 class ="text-center mt-0">음식 이름 : {{ food.title }} </h2>
@@ -5,3 +8,5 @@
         <p> 조리법 : {{ food.body }}</p>
     </div>
 </section>
+</div>
+{% endblock %}

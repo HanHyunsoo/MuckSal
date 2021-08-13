@@ -8,5 +8,5 @@ urlpatterns = [
     path('new/', recipe.views.new, name = 'new'),
     path('create/', recipe.views.create, name ='create'),
     path('search/', recipe.views.search, name='search'),
-    path('postcreate/', recipe.views.postcreate, name='postcreate'),
+    # path('postcreate/', recipe.views.postcreate, name='postcreate'),
 ]

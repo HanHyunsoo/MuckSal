@@ -1,11 +1,11 @@
 from django import forms
 from django.db.models import fields
-from .models import Food
+from .models import Recipe
 from django import forms
 
-class CreateForm(forms.ModelForm):
+class CreateRecipe(forms.ModelForm):
     class Meta:
-        model = Food
+        model = Recipe
         fields = ['title', 'body']
 
 class PostSearchForm(forms.Form):
