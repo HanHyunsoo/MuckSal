@@ -1,0 +1,13 @@
+{% extends 'community/layout.html' %}
+{% block content %}
+<br>
+<form action="{% url 'recipe:create' %}" method = "POST">
+	{% csrf_token %}
+	<table>
+		{{form.as_table}}
+	</table>
+	<button type="submit">작성</button>
+</form>
+
+</div>
+{% endblock %}
