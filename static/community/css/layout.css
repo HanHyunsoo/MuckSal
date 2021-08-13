@@ -1,0 +1,82 @@
+header{
+    height: 52px;
+    background-color: white; 
+    text-align: center;
+}
+.header-color {
+    height : 10px;
+    background-color : #ABD261;
+}
+body{
+    font-family: 'NanumSquare',sans-serif;
+    font-weight: 400;
+    padding: 0;
+    margin: 0;
+}
+.navbar{
+    position: absolute;
+    width: 100%;
+    background-color: white;
+    top: 0;
+    margin: 0;
+    height: fit-content;
+
+}
+
+.mainimg{
+    height: auto;
+    max-width: 8%;
+}
+.logo1{
+    text-align: center;
+    height: 30pt;
+    margin-top: 4pt;
+}
+.menu{
+    font-size: 15px;
+    float : left;
+    margin : 0px 23px;
+    color: gray;
+}
+.RightMenu{
+    float: right;
+
+}
+
+.userid {
+
+    font-size: 15px;
+    display: inline-block;
+    color: gray;
+    font-weight: 600;
+
+}
+
+.LoginAndLogoutMenu{
+    font-size: 15px;
+    color: gray;
+    display: inline-block;
+    margin : 0px 23px;
+
+}
+
+.sir{
+    font-size: 15px;
+    margin : 0px 23px 0px 0px;
+    color: gray;
+    display: inline-block;
+}
+
+
+
+a:link{
+    color : gray;
+    text-decoration: none;
+    /* font-weight: 100; */
+    white-space : nowrap;
+
+    
+}
+a:visited{
+    color : gray;
+}
