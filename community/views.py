@@ -8,7 +8,7 @@ from django.core.paginator import Paginator
 # Create your views here.
 
 def community(request):
-    posts = Post.objects.all().order_by('-rank')
+    posts = Post.objects.all()
     paginator = Paginator(posts, 10)
     page = request.GET.get('page')
     boards = paginator.get_page(page)
