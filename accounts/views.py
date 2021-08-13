@@ -1,7 +1,8 @@
-from accounts.forms import LoginForm
-from django.shortcuts import redirect, render
-from .models import User
-from django.contrib.auth.hashers import check_password, make_password
+from accounts.forms import LoginForm, ProfileForm
+from django.contrib.auth.forms import PasswordChangeForm
+from django.shortcuts import get_object_or_404, redirect, render
+from .models import Profile, User
+from django.contrib.auth.hashers import make_password
 from django.contrib import auth
 
 def signup(request):
@@ -12,23 +13,23 @@ def signup(request):
         password = request.POST.get('password',None)
         re_password = request.POST.get('re_password',None)
         useremail = request.POST.get('useremail',None)
-        nickname = request.POST.get('nickname',None)
 
         res_data = {} #프론트에 던져줄 응답 데이터
-        if not (username and password and re_password and useremail and nickname):
+        if not (username or password or re_password or useremail):
             res_data['error'] = "모든 값을 입력하세요"
         elif password != re_password:
             res_data['error'] = "비밀번호가 다릅니다."
         else:
             #같으면 정보들로 인스턴스 생성
-            user = User(
+            user = User.objects.create(
                 username = username,
                 password = make_password(password),
                 useremail = useremail,
-                nickname = nickname
             )
-            #저장
-            user.save()
+            nickname = request.POST.get("nickname",None)
+            profile = Profile.objects.create(user=user,nickname=nickname)
+            # #저장
+            # user.save()
             auth.login(request,user)
         return render(request,'diet/create.html',res_data)
 
@@ -52,3 +53,35 @@ def logout(request):
 
 def index(request):
     return render(request,'registration/index.html')
+
+def people(request):
+    person = get_object_or_404(auth.get_user_model(), id=request.user.id)
+    return render(request,'registration/people.html',{'person':person})
+
+def profile(request):
+    if request.method == 'POST':
+        profile_form = ProfileForm(request.POST,request.FILES,instance=request.user.profile)
+        if profile_form.is_valid():
+            profile_form.save()
+            return redirect('people')
+        return redirect('registration/profile.html')
+    else:
+        profile = get_object_or_404(Profile, user=request.user)
+        profile_form = ProfileForm(instance=profile)
+        return render(request, 'registration/profile.html', {
+            'profile_form':profile_form
+        })
+
+def changePassword(request):
+    if request.method == "POST":
+        user_change_form = PasswordChangeForm(user=request.user, data=request.POST)
+        if user_change_form.is_valid():
+            user = user_change_form.save()
+            return redirect('people')
+        return redirect('registration/profile.html')
+    else:
+        user_change_form = PasswordChangeForm(user=request.user)
+        return render(request, 'registration/changePassword.html', {
+            'user_change_form':user_change_form
+        })
+

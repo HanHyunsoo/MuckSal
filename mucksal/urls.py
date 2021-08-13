@@ -28,5 +28,6 @@ urlpatterns = [
     path('community/', include('community.urls')),
     path('diet/', include('diet.urls')),
     path('recipe/', include('recipe.urls')),
+    path('people/',accounts.views.people,name='people'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
