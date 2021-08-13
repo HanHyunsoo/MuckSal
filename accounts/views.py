@@ -12,10 +12,9 @@ def signup(request):
         password = request.POST.get('password',None)
         re_password = request.POST.get('re_password',None)
         useremail = request.POST.get('useremail',None)
-        nickname = request.POST.get('nickname',None)
 
         res_data = {} #프론트에 던져줄 응답 데이터
-        if not (username and password and re_password and useremail and nickname):
+        if not (username and password and re_password and useremail):
             res_data['error'] = "모든 값을 입력하세요"
         elif password != re_password:
             res_data['error'] = "비밀번호가 다릅니다."
@@ -25,7 +24,6 @@ def signup(request):
                 username = username,
                 password = make_password(password),
                 useremail = useremail,
-                nickname = nickname
             )
             #저장
             user.save()

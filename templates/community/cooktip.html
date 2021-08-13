@@ -1,6 +1,9 @@
 {% extends 'community/layout.html' %}
 {% load static %}
 
+{% block extrahead %}
+    <link rel='stylesheet' href="{% static 'community/css/content.css'%}">   
+{% endblock %}
 
 {% block content %}
 <!--여기 content임-->
@@ -41,7 +44,7 @@
 
 <!--여기부터 게시글 목록들 좌라락 나옴-->
 <div class="ccontainer">
-    {% for posts in posts.all %}
+    {% for posts in boards %}
         <ul>
             <li>
                 <a href="{% url 'community:detail' posts.id %}">
@@ -77,42 +80,41 @@
     {% endfor%}
 </div>
 
-
-
-<a href="{% url 'community:create' %}" class="button">
-    글 쓰기 +
-</a>
-
-
-
-
+<div class="button_contain">
+    <a href="{% url 'community:new' %}" class="button">
+        글 쓰기 +
+    </a>
+</div>
+<br>
+<br>
 <!--footer-->
-<div>
+<div>  
     <div class="footer">
         <div class="serch">
 
         </div>
-        <div class="serchbutton">
-            검색
+        <div class="search">
+            <div class="serchbutton">
+                검색
+            </div>
         </div>
     </div>
+</div>
 
+<div class="page">
+    {% if boards.has_previous %}
+    <a href="?page=1">First</a>
+    <a href="?page={{boards.previous_page_number}}">Previous</a>
+    {% endif %}
 
-    <div class="page">
-        {% if boards.has_previous %}
-        <a href="?page=1">First</a>
-        <a href="?page={{boards.previous_page_number}}">Previous</a>
-        {% endif %}
+    <span>{{boards.number}}</span>
+    <span>of/</span>
+    <span>{{boards.paginator.num_pages}}</span>
 
-        <span>{{boards.number}}</span>
-        <span>of/</span>
-        <span>{{boards.paginator.num_pages}}</span>
-
-        {%if boards.has_next%}
-        <a href="?page={{boards.next_page_number}}">Next</a>
-        <a href="?page={{boards.paginator.num_pages}}">Last</a>
-        {%endif%}
-    </div>
+    {%if boards.has_next%}
+    <a href="?page={{boards.next_page_number}}">Next</a>
+    <a href="?page={{boards.paginator.num_pages}}">Last</a>
+    {%endif%}
 </div>
 
 <!--modal-->

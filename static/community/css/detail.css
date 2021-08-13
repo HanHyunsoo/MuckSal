@@ -40,7 +40,8 @@ h2 {
 }
 
 .name_time {
-    float : left;}
+    float : left;
+}
 
 .like_menu {
     float : right;
@@ -49,6 +50,10 @@ h2 {
 .comment {
     width : 1200px;
     margin : auto;
+}
+
+.comment_contain{
+    display: flex;
 }
 
 .form {
