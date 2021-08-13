@@ -8,12 +8,11 @@ from django.core.paginator import Paginator
 # Create your views here.
 
 def community(request):
-    post = Post.objects
     posts = Post.objects.all()
-    page = request.GET.get('page')
     paginator = Paginator(posts, 10)
+    page = request.GET.get('page')
     boards = paginator.get_page(page)
-    return render(request,'community/cooktip.html',{'posts':posts,'boards':boards})
+    return render(request,'community/cooktip.html',{'boards':boards})
 
 
 def new(request):
