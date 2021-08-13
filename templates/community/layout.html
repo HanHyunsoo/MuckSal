@@ -1,7 +1,8 @@
-<!DOCTYPE html>
 {% load static %}
+<!DOCTYPE html>
 
 <html>
+<<<<<<< HEAD
     <head>
         <script type="text/javascript" src="{% static 'community/js/popup.js' %}"></script>
         <link rel='stylesheet' href="{% static 'community/css/header.css'%}">
@@ -29,17 +30,50 @@
                 </div>
             <br>
             <div class = "header-color"></div>
+=======
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css">
+    <link rel='stylesheet' href="{% static 'community/css/layout.css'%}">
+    {% block extrahead %}
+
+    {% endblock %}
+</head>
+
+<body>
+
+    <div class="navbar">
+        <div class=logo1>
+            <img src="{% static 'images/logo1.png'%}" alt="먹고는 살아야지" class="mainimg">
         </div>
+        <div class="menu_container">
+            <div>
+                <div class="menu">DIET</div>
+                <div class="menu"><a href="{% url 'community:community' %}">COMMUNITY</a></div>
+                <div class="menu">RECIPE</div>
+                <div class="menu">MYPAGE</div>
+            </div>
 
-        {% block content %}
+            <div class="RightMenu">
+                <div class="userid">배고파</div>
+                <div class="sir"> 님 </div>
+                <div class="LoginAndLogoutMenu"> Logout </div>
+            </div>
+>>>>>>> 053bc5ea2221c5b053cc5546beeb2105aa6b9fdb
+        </div>
+        <br>
+        <div class="header-color"></div>
+    </div>
+    {% block content %}
 
-        {% endblock %}
-        
+    {% endblock %}
 
-        <footer>
-            <br>
-            <br>
-            <br>
-        </footer>
-    </body>
+    <footer>
+        <br>
+        <br>
+        <br>
+    </footer>
+</body>
+
 </html>

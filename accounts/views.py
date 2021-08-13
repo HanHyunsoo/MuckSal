@@ -2,6 +2,7 @@ from accounts.forms import LoginForm
 from django.shortcuts import redirect, render
 from .models import User
 from django.contrib.auth.hashers import check_password, make_password
+from django.contrib import auth
 
 def signup(request):
     if request.method == "GET":
@@ -11,9 +12,10 @@ def signup(request):
         password = request.POST.get('password',None)
         re_password = request.POST.get('re_password',None)
         useremail = request.POST.get('useremail',None)
+        nickname = request.POST.get('nickname',None)
 
         res_data = {} #프론트에 던져줄 응답 데이터
-        if not (username and password and re_password and useremail):
+        if not (username and password and re_password and useremail and nickname):
             res_data['error'] = "모든 값을 입력하세요"
         elif password != re_password:
             res_data['error'] = "비밀번호가 다릅니다."
@@ -22,13 +24,13 @@ def signup(request):
             user = User(
                 username = username,
                 password = make_password(password),
-                useremail = useremail
+                useremail = useremail,
+                nickname = nickname
             )
-
             #저장
             user.save()
-
-        return render(request,'registration/index.html',res_data)
+            auth.login(request,user)
+        return render(request,'diet/create.html',res_data)
 
 
 def login(request):

@@ -1,3 +1,4 @@
+{% extends 'community/layout.html' %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'diet/create.css' %}">
 
@@ -82,7 +83,7 @@
             {% endif %}
         {% endfor %}
         function checkFood(domObject) {
-            {#선택 안함을 선택할 시#}
+            // {#선택 안함을 선택할 시#}
             if (domObject.id === "0") {
                 document.getElementById("id_" + domObject.className).value = "";
                 {# 선택 안함을 해서 그에 맞는 이미지 링크로 바꾸고 대체하고 display:none 속성 삭제 #}
