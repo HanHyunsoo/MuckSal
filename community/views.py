@@ -14,6 +14,8 @@ def community(request):
     boards = paginator.get_page(page)
     return render(request,'community/cooktip.html',{'boards':boards})
 
+def best_image(request, id):
+    post = get_object_or_404 (Post, id=id)
 
 def new(request):
     return render(request, 'community/new.html')
