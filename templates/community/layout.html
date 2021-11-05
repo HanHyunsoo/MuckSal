@@ -23,14 +23,19 @@
                 <div class="menu">DIET</div>
                 <div class="menu"><a href="{% url 'community:community' %}">COMMUNITY</a></div>
                 <div class="menu">RECIPE</div>
-                <div class="menu"><a href="{% url 'people' %}"></a>MYPAGE</div>
+                <div class="menu"><a href="{% url 'people' %}">MYPAGE</a></div>
             </div>
 
+            
             <div class="RightMenu">
-                <div class="userid">배고파</div>
-                <div class="sir"> 님 </div>
-                <div class="LoginAndLogoutMenu"> Logout </div>
+            {% if user.is_active %}
+                <div class="userid">{{user.profile.nickname}}님</div>
+                <div class="LoginAndLogoutMenu" ><a href="{% url 'accounts:logout' %}"> Logout </a></div>
             </div>
+            {% else %}
+                <div class="userid"><a href="{% url 'accounts:signup' %}">회원가입</a></div>
+                <div class="LoginAndLogoutMenu" ><a href="{% url 'accounts:login' %}"> Login </a> </div>
+            {% endif %}
         </div>
         <br>
         <div class="header-color"></div>

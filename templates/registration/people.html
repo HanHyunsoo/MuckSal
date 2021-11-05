@@ -1,6 +1,11 @@
 {% extends 'community/layout.html' %}
 {% load static %}
 
+{% block extrahead %}
+    <link rel='stylesheet' href="{% static 'accounts/css/people.css'%}">
+{% endblock %}
+
+
 {% block content %}
 <div class="row">
     <div class="col-4">
@@ -10,10 +15,10 @@
     <div class="col-8">
         <h2>{{ person.username }}
             {% if person.username == user.username %}
-            <a href="{% url 'accounts:profile' %}"><button class="btn btn-success" >프로필 편집</button></a>
+            <a href="{% url 'accounts:profile' %}"><button class="success-btn" >프로필 편집</button></a>
             {% endif %}
         </h2>
-        <p>{{ person.profile.nickname }}</p>
+        <p><b>{{ person.profile.nickname }}</b></p>
         <p>{{ person.profile.description }}</p>
     </div>
 </div>
