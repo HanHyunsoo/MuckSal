@@ -39,7 +39,14 @@ def login(request):
         form = LoginForm(request.POST)
         #정상적인 데이터인지 확인
         if form.is_valid(): #forms.py에 정의한 clean 메소드 대로 검사
-            request.session['user'] = form.user_id #로그인 session 추가 후 매칭된 user 모델의 pk를 세션.user로 추가
+            # request.session['user'] = form.user_id #로그인 session 추가 후 매칭된 user 모델의 pk를 세션.user로 추가
+            user = auth.authenticate(
+                username=form.cleaned_data['username'],
+                password=form.cleaned_data['password']
+            )
+            if user:
+                auth.login(request, user)
+                print(user)
             return redirect('diet:create')
     else:
         form = LoginForm()
@@ -47,8 +54,7 @@ def login(request):
 
 
 def logout(request):
-    if request.session['user']:
-        del(request.session['user'])
+    auth.logout(request)
     return redirect('/')
 
 def index(request):
