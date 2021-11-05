@@ -139,6 +139,7 @@ a:visited{
     z-index : 1;
     background-color: rgba(0,0,0,0.3);
     display: none;
+    
 }
 .wrap {
     position : fixed;
@@ -248,11 +249,29 @@ li{
     width : 70%;
     height : 100%;
     float : left;
+    overflow : scroll;
+    text-align: center;
 }
 
 .right_bar{
     width :30%;
     height : 100%;
     float : right;
+}
+.photo_size{
+    width : auto;
+    height: auto;
+}
+.side_title{
+    padding : 20px;
+    font-size : 30px;
+    display : inline-block;
+}
+.writer {
+    font-size : 15px;
+}
+
+.real_side_content{
+    padding : 20px;
 }
 

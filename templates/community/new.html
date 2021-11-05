@@ -8,15 +8,22 @@
 <body>
 
     <div class="form">
-        <form action="{% url 'community:create' %}" method="post">
+        <form action="{% url 'community:create' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div>
-                제목 : <input type="text" name="title">
+                제목  <input type="text" name="title">
+            </div>
+            <hr>
+            <div>
+                본문  <textarea name ="content" cols="30" rows="10"></textarea>
             </div>
             <div>
-                본문 : <textarea name ="content" cols="30" rows="10"></textarea>
+                이미지 : <input type="file" name ="image" multiple>
             </div>
-            <button type="submit">작성</button> 
+            <div>
+                작성자 <input type ="text" name="writer">
+            </div>
+            <button type="submit">작성</button>
         </form>
     </div>
 </body>
