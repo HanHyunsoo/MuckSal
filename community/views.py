@@ -2,13 +2,13 @@ from django.shortcuts import get_object_or_404, render,redirect
 from django.utils import timezone
 from django.http.response import HttpResponse
 from .models import Post
-from .forms import CommentForm
+from .forms import CommentForm, PostForm
 from django.http import request
 from django.core.paginator import Paginator
 # Create your views here.
 
 def community(request):
-    posts = Post.objects.all()
+    posts = Post.objects.all().order_by('-pk')
     paginator = Paginator(posts, 10)
     page = request.GET.get('page')
     boards = paginator.get_page(page)
@@ -21,10 +21,11 @@ def new(request):
     return render(request, 'community/new.html')
 
 def create(request):
-    post  = Post()
+    post  = PostForm(request.POST, request.FILES)
     post.title = request.POST.get('title')
     post.content = request.POST.get('content')
     post.created_at = request.POST.get('created_at')
+    post.writer = request.POST.get('writer')
     post.save()
     return redirect('community:community')
 

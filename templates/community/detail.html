@@ -58,7 +58,6 @@
 
 
     <div class="comment">
-        <hr>
         <div>
             <hr>
             <form method="POST" action="{% url 'community:detail' post.id %}">
@@ -68,10 +67,8 @@
             </form>
             <hr>
         </div>
-        <hr>
         {% for comment in post.comments.all %}
         <br>
-<<<<<<< HEAD
         <div>
             <div class="comment_contain">
                 <div>
@@ -80,14 +77,6 @@
                 <div>
                     {{comment.text}}
                 </div>
-=======
-        <div  style="display : flex;">
-            <div style="margin-right: 20px;">
-                {{post.writer}}
-            </div>
-            <div>
-                {{comment.text}}
->>>>>>> 43723e14dc849264ebfd3669ca1080b836232be5
             </div>
         </div>
         <br>

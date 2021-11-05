@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block extrahead %}
-    <link rel='stylesheet' href="{% static 'community/css/content.css'%}">   
+<link rel='stylesheet' href="{% static 'community/css/content.css'%}">
 {% endblock %}
 
 {% block content %}
@@ -21,7 +21,7 @@
     <div class="container">
         <div>
             <div class="ractangle">
-                
+
             </div>
             <div class="otherfont3">2</div>
         </div>
@@ -46,37 +46,35 @@
 <!--여기부터 게시글 목록들 좌라락 나옴-->
 <div class="ccontainer">
     {% for posts in boards %}
-        <ul>
-            <li>
-                <a href="{% url 'community:detail' posts.id %}">
-                    <div class="image">
-                        {% if posts.image %}
-                        <div id="images">
-                            <img src="{{posts.image.url}}" width="200" height="200" alt="이미지">
-                        </div>
-
-                        {% endif %}
+    <ul>
+        <li>
+            <a id="{{posts.id}}" href="#modal_{{posts.id}}">
+                <div class="image" onclick="change()">
+                    {% if posts.image %}
+                    <div id="images">
+                        <img src="{{posts.image.url}}" width="200" height="200" alt="이미지">
                     </div>
-                </a>
-
-                <div class="title">
-                    <span>
-                        <div>{{posts.title}}</div>
-                    </span>
+                    {% endif %}
                 </div>
-                <div class="another_content">
-                    <div class="container_title">
-                        {{ posts.content }}
-                    </div>
-                    <div class="writer">
-                        {{posts.writer}}
-                    </div>
-                    <div class="like">
-                        좋아요
-                    </div>
+            </a>
+            <div class="title">
+                <span>
+                    <div>{{posts.title}}</div>
+                </span>
+            </div>
+            <div class="another_content">
+                <div class="container_title">
+                    {{ posts.content }}
                 </div>
-            </li>
-        </ul>
+                <div class="writer">
+                    {{posts.writer}}
+                </div>
+                <div class="like">
+                    좋아요
+                </div>
+            </div>
+        </li>
+    </ul>
     {% endfor%}
 </div>
 
@@ -87,8 +85,10 @@
 </div>
 <br>
 <br>
+
+
 <!--footer-->
-<div>  
+<div>
     <div class="footer">
         <div class="serch">
 
@@ -101,6 +101,7 @@
     </div>
 </div>
 
+<!--next_page-->
 <div class="page">
     {% if boards.has_previous %}
     <a href="?page=1">First</a>
@@ -111,45 +112,86 @@
     <span>of/</span>
     <span>{{boards.paginator.num_pages}}</span>
 
-    {%if boards.has_next%}
+    {% if boards.has_next %}
     <a href="?page={{boards.next_page_number}}">Next</a>
     <a href="?page={{boards.paginator.num_pages}}">Last</a>
     {%endif%}
 </div>
 
+
+
 <!--modal-->
-<div class="dimmed">
+
+<div class="dimmed" id="modal_background">
+
     <div style="width : 1001px; margin: auto;">
+
         <div class="close" onclick="change1()" onmouseover="setCursor()">
             <div id="x">
                 x
             </div>
         </div>
-        <div class="wrap">
+        {% for posts in boards %}
+        <!--content-->
+        <div id="modal_content" class="wrap">
             <div class="left_image">
-                <img src="{{post.image.url}}" width="200" height="200" alt="이미지">
+                {% if posts.image %}
+                <img src="{{posts.image.url}}" alt="이미지">
+                {% endif %}
             </div>
             <div class="right_bar">
                 <div class="side_title">
-
+                    <div>{{posts.title}}</div> <div class="writer">{{posts.writer}}</div>
                 </div>
+                <hr>
                 <div class="side_content">
                     <div class="like">
 
                     </div>
                     <div class=" real_side_content">
-
+                        {{posts.content}}
                     </div>
                 </div>
                 <div class="comment">
-
                 </div>
             </div>
         </div>
+        {% endfor %}
     </div>
 </div>
 
 <br>
+
+<script>
+    function change() {
+        document.getElementById('modal_background').style.display = "block";
+        document.getElementById('modal_content').style.display = "block";
+        scrollPosition = window.pageYOffset;
+        let body = document.getElementsByTagName("body")[0];
+        body.style.overflowY = "overlay";
+        body.style.position = 'fixed';
+        body.style.top = `-${scrollPosition}px`;
+        body.style.width = '100%';
+
+    }
+
+    function change1() {
+        document.getElementById('modal_background').style.display = "none";
+        document.getElementById('modal_content').style.display = "none";
+        let body = document.getElementsByTagName("body")[0];
+        body.style.removeProperty('overflowY');
+        body.style.removeProperty('position');
+        body.style.removeProperty('top');
+        body.style.removeProperty('width');
+        window.scrollTo(0, scrollPosition);
+        window.history.pushState("", "", '/community/');
+
+    }
+
+    function setCursor() {
+        document.getElementsByClassName('close')[0].style.cursor = "pointer";
+    }
+</script>
 
 
 {% endblock %}
