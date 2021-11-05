@@ -1,0 +1,23 @@
+{% extends 'community/layout.html' %}
+{% load static %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'diet/my_meal.css' %}">
+    <div id="main">
+        <hr>
+    {% for planner in planners %}
+            <div class="meal_planner">
+                {% for food in planner.foods.all %}
+                    <div id="{{ forloop.counter }}">
+                        {% if food.food_image %}
+                            <img src="{{ food.food_image.url }}" alt="{{ food.food_name }}">
+                        {% endif %}
+                        <p>{{ food.food_name }}</p>
+                    </div>
+                {% endfor %}
+                <p>작성 시간: {{ planner.reg_date }}</p>
+            </div>
+        <hr>
+    {% endfor %}
+    </div>
+{% endblock content %}

@@ -3,6 +3,7 @@
 
 # 시크릿 코드 파일
 secrets.json
+.DS_Store
 
 ### Django ###
 *.log

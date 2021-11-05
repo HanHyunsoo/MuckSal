@@ -2,8 +2,7 @@
 {% load static %}
 
 {% block extrahead %}
-    <link rel='stylesheet' href="{% static 'community/css/content.css'%}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel='stylesheet' href="{% static 'community/css/content.css'%}">   
 {% endblock %}
 
 {% block content %}
@@ -49,7 +48,7 @@
     {% for posts in boards %}
         <ul>
             <li>
-                <a id="{{ posts.id }}" data-bs-toggle="modal" data-bs-target="#modal_{{ posts.id }}">
+                <a href="{% url 'community:detail' posts.id %}">
                     <div class="image">
                         {% if posts.image %}
                         <div id="images">
@@ -78,23 +77,6 @@
                 </div>
             </li>
         </ul>
-        <div class="modal fade" id="modal_{{ posts.id }}" tabindex="-1" aria-labelledby="modal_{{ posts.id }}Label" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="modal_{{ posts.id }}Label">{{ posts.title }}</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                  <p>{{ posts.content }}</p>
-                  <p>글쓴이 : {{ posts.writer }}</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
     {% endfor%}
 </div>
 
@@ -168,7 +150,6 @@
 </div>
 
 <br>
-    <script>
-        var test = JSON.parse('{{ test | safe }}');
-    </script>
+
+
 {% endblock %}

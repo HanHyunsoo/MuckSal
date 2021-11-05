@@ -5,6 +5,7 @@ from .models import Post
 from .forms import CommentForm
 from django.http import request
 from django.core.paginator import Paginator
+from django.core import serializers
 # Create your views here.
 
 def community(request):
@@ -12,7 +13,8 @@ def community(request):
     paginator = Paginator(posts, 10)
     page = request.GET.get('page')
     boards = paginator.get_page(page)
-    return render(request,'community/cooktip.html',{'boards':boards})
+    test = serializers.serialize("json", paginator.get_page(page))
+    return render(request,'community/cooktip.html',{'boards':boards, "test":test})
 
 def best_image(request, id):
     post = get_object_or_404 (Post, id=id)
