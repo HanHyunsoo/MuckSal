@@ -1,16 +1,14 @@
+
 {% extends 'community/layout.html' %}
-{% load static %}
-{% block content %}
-<div style="text-align: center; padding:350px">
+<div style="text-align: center;">
 <h1> 작성하기 </h1>
 
 <hr>
-<form method ='POST' >
+<form method ='POST'>
     {% csrf_token %}
     <table>
         {{form.as_table}}
     </table>
-    <button type ="submit">성</button>
+    <button type ="submit">작성</button>
 </form>
 </div>
-{% endblock %}

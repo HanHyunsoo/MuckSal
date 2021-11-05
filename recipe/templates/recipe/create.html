@@ -1,9 +1,9 @@
 {% extends 'community/layout.html' %}
-{% load static %}
 {% block content %}
-<form action="{% url 'recipe:create' %}" method = "POST" style="margin-top: 150px; text-align: center; justify-content: center;">
+<br>
+<form action="{% url 'recipe:create' %}" method = "POST">
 	{% csrf_token %}
-	<table style="text-align: center; justify-content: center;">
+	<table>
 		{{form.as_table}}
 	</table>
 	<button type="submit">작성</button>
