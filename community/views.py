@@ -10,6 +10,11 @@ from django.core import serializers
 
 def community(request):
     posts = Post.objects.all().order_by('-pk')
+
+    search_key = request.GET.get('search_key')
+    if search_key:
+        posts = posts.filter(title__icontains=search_key)
+
     paginator = Paginator(posts, 10)
     page = request.GET.get('page')
     boards = paginator.get_page(page)

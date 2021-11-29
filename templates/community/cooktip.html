@@ -7,8 +7,8 @@
 
 {% block content %}
 <!--여기 content임-->
-<p>
-    음식 공유 게시판
+<p class = "cook_share">
+    Review
 </p>
 <div id="contain">
     <div class="best_writing">
@@ -21,19 +21,21 @@
     <div class="container">
         <div>
             <div class="ractangle">
-
+                <img src="https://blog.kakaocdn.net/dn/kAZgq/btqQzRFyXuO/Dg2fSKaU4ykGl88lxKC9zk/img.jpg" width = "180" height="180" alt="이미지">
             </div>
             <div class="otherfont3">2</div>
         </div>
 
         <div>
             <div class="ractangle2">
+                <img src="https://news.nateimg.co.kr/orgImg/kr/2020/11/07/ed94bcec9e90.jpg" width ="200" height="200" alt="이미지">
             </div>
             <div class="otherfont3">1</div>
         </div>
 
         <div>
             <div class="ractangle">
+                <img src="http://img.segye.com/content/image/2021/01/07/20210107516500.jpg" width ="180" height="180" alt="이미지">
             </div>
             <div class="otherfont3">3</div>
         </div>
@@ -49,7 +51,7 @@
     <ul>
         <li>
             <a id="{{posts.id}}" href="#modal_{{posts.id}}">
-                <div class="image" onclick="change()">
+                <div class="image" onclick="change('{{posts.title}}','{{posts.content}}','{{posts.image}}')">
                     {% if posts.image %}
                     <div id="images">
                         <img src="{{posts.image.url}}" width="200" height="200" alt="이미지">
@@ -69,20 +71,12 @@
                 <div class="writer">
                     {{posts.writer}}
                 </div>
-                <div class="like">
-                    좋아요
-                </div>
             </div>
         </li>
     </ul>
     {% endfor%}
 </div>
 
-<div class="button_contain">
-    <a href="{% url 'community:new' %}" class="button">
-        글 쓰기 +
-    </a>
-</div>
 <br>
 <br>
 
@@ -90,13 +84,14 @@
 <!--footer-->
 <div>
     <div class="footer">
-        <div class="serch">
-
-        </div>
-        <div class="search">
-            <div class="serchbutton">
-                검색
-            </div>
+        <form action="" method='GET'>
+            <input class="search_div" type="text" name = "search_key" value ="{{search_key}}">
+            <input class="search_button"type ="submit" value = "Search">
+        </form>
+        <div class="button_contain">
+            <a href="{% url 'community:new' %}" class="button">
+                글 쓰기 +
+            </a>
         </div>
     </div>
 </div>
@@ -121,10 +116,9 @@
 
 
 <!--modal-->
-
 <div class="dimmed" id="modal_background">
 
-    <div style="width : 1001px; margin: auto;">
+    <div style="flex-direction: column;">
 
         <div class="close" onclick="change1()" onmouseover="setCursor()">
             <div id="x">
@@ -134,22 +128,20 @@
         {% for posts in boards %}
         <!--content-->
         <div id="modal_content" class="wrap">
-            <div class="left_image">
-                {% if posts.image %}
-                <img src="{{posts.image.url}}" alt="이미지">
-                {% endif %}
+            <div id ="left_image">
+                
             </div>
             <div class="right_bar">
                 <div class="side_title">
-                    <div>{{posts.title}}</div> <div class="writer">{{posts.writer}}</div>
+                    <!-- 제목 넣을 곳임. -->
                 </div>
                 <hr>
                 <div class="side_content">
                     <div class="like">
 
                     </div>
-                    <div class=" real_side_content">
-                        {{posts.content}}
+                    <div class="real_side_content">
+                        <!-- 여기다가 내용 콘텐트를 넣을 장소임.-->
                     </div>
                 </div>
                 <div class="comment">
@@ -163,7 +155,15 @@
 <br>
 
 <script>
-    function change() {
+    function change(title,content,picture) {
+        document.getElementsByClassName('side_title')[0].textContent = title;
+        document.getElementsByClassName('real_side_content')[0].textContent = content;
+        if(picture < 5){
+            document.getElementById('left_image').innerHTML = "<img src='https://theopma.ca/wp-content/uploads/2020/07/noimage.png' width = 1000 height = 600/>";
+        }
+        else{
+        document.getElementById('left_image').innerHTML = '<img src=' + "/media/" + picture + " width = 1000 height = 600/>";
+        }
         document.getElementById('modal_background').style.display = "block";
         document.getElementById('modal_content').style.display = "block";
         scrollPosition = window.pageYOffset;

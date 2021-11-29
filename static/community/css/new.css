@@ -1,7 +1,7 @@
 .form {
-    display : flex;
+    margin : 20px;
     justify-content : center;
-    padding-top : 200px;
+    padding-top : 100px;
 }
 
 #id_title {
@@ -19,4 +19,43 @@
 #id_writer {
     border : none;
     resize : none;
+}
+
+input {
+    height: 30px;
+    width : 1300px;
+    border : none;
+    outline : none;
+    font-size : 10px;
+    margin-bottom: 10px;
+}
+
+.title{
+    font-size: 30px;
+}
+
+textarea{
+    resize : none;
+    outline: none;
+    width : 100%;
+    margin-top : 30px;
+    height: 300px;
+}
+button {
+    float : right;
+    padding : 10px 20px;
+    background-color: white;
+    border : none;
+}
+
+.images{
+    margin : 10px 0 10px 0;
+}
+
+img{
+    width : 50%;
+}
+
+.first_title_input {
+    font-size: 20px;
 }
