@@ -1,13 +1,33 @@
 {% extends 'community/layout.html' %}
 {% block content %}
+<style>
+	label {
+		display: none;
+	
+	}
+	#fdcreate{
+		text-align: center;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	#fdcrform {
+		margin-left: auto;
+		margin-right: auto;
+	}
+	#fdcrtable{
+		text-align: center;
+		display: inline-block;
+	}
+</style>
 <br>
-<form action="{% url 'recipe:create' %}" method = "POST">
-	{% csrf_token %}
-	<table>
-		{{form.as_table}}
-	</table>
-	<button type="submit">작성</button>
-</form>
+<div id ="fdcreate">
+	<form action="{% url 'recipe:create' %}" method = "POST" id="fdcrform">
+		<table id="fdcrtable">
+		{% csrf_token %}
+			{{form.as_table}}			
+		</table>
+		<button type="submit">작성</button>
+	</form>
 
 </div>
 {% endblock %}
