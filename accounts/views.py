@@ -1,38 +1,24 @@
-from accounts.forms import LoginForm, ProfileForm
+from accounts.forms import LoginForm, ProfileForm,SignupForm
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import get_object_or_404, redirect, render
 from .models import Profile, User
 from django.contrib.auth.hashers import make_password
 from django.contrib import auth
 
+
 def signup(request):
-    if request.method == "GET":
-        return render(request,'registration/signup.html')
-    elif request.method == "POST":
-        username = request.POST.get('username',None)
-        password = request.POST.get('password',None)
-        re_password = request.POST.get('re_password',None)
-        useremail = request.POST.get('useremail',None)
-
-        res_data = {} #프론트에 던져줄 응답 데이터
-        if not (username or password or re_password or useremail):
-            res_data['error'] = "모든 값을 입력하세요"
-        elif password != re_password:
-            res_data['error'] = "비밀번호가 다릅니다."
-        else:
-            #같으면 정보들로 인스턴스 생성
-            user = User.objects.create(
-                username = username,
-                password = make_password(password),
-                useremail = useremail,
-            )
-            nickname = request.POST.get("nickname",None)
-            profile = Profile.objects.create(user=user,nickname=nickname)
-            # #저장
-            # user.save()
-            auth.login(request,user)
-        return render(request,'diet/create.html',res_data)
-
+    if request.method =='POST':
+        signup_form = SignupForm(request.POST)
+        if signup_form.is_valid():
+            signup_form.signup()
+            return render(request,'diet/create.html')
+    else:
+        signup_form = SignupForm()
+    
+    context = {
+        'signup_form' : signup_form
+    }
+    return render(request,'registration/signup.html',context)
 
 def login(request):
     if request.method == "POST":

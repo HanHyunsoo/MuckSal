@@ -1,12 +1,7 @@
-<<<<<<< HEAD
-#header{
-    
-=======
 header{
     height: 52px;
     background-color: white; 
     text-align: center;
->>>>>>> 053bc5ea2221c5b053cc5546beeb2105aa6b9fdb
 }
 .header-color {
     height : 10px;
@@ -22,19 +17,6 @@ h1{
     margin : 0;
     padding : 10px 0 0 0;
 }
-<<<<<<< HEAD
-.logo1{
-    width:180px;
-    text-align: center;
-}
-.hheader{
-    position: fixed;
-    width : 1688px;
-    background-color: white;
-    padding-top : 5px;
-    text-align: center;
-    top : 0px;
-=======
 .navbar{
     position: absolute;
     width: 100%;
@@ -50,7 +32,6 @@ img{
     text-align: center;
     height: 30pt;
     margin-top: 4pt;
->>>>>>> 053bc5ea2221c5b053cc5546beeb2105aa6b9fdb
 }
 
 .font{

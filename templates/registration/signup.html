@@ -10,56 +10,28 @@
 
 {% block content %}
     <div class="container">
-        <div class="row mt-5">
-            <div class="col-12 text-center">
-                <h1>회원가입</h1>
-            </div>
-        </div>
-        <br>
-        <div class="row mt-5">
-            <div class="col-12">
-                {{error}}
-            </div>
-        </div>
-        <br>
-        <div class="row mt-5">
-            <div class="col-12">
-                <form method="POST" action="{% url 'accounts:signup' %}">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label for="username">아이디를 입력하세요</label>
-                        <br>
-                        <input type="text" class="form-control"  id="username" name="username" placeholder="아이디">
-                        <br>
-                    </div>
-                    <div class="form-group">
-                        <label for="useremail">이메일을 입력하세요</label>
-                        <br>
-                        <input type="email" class="form-control" id="useremail" name="useremail" placeholder="이메일">
-                        <br>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">비밀번호를 입력하세요</label>
-                        <br>
-                        <input type="password" class="form-control" id="password" name = "password" placeholder="비밀번호">
-                        <br>
-                    </div>
-                    <div class="form-group">
-                        <label for="re_password">비밀번호를 다시 한 번 입력하세요</label>
-                        <br>
-                        <input type="password" class="form-control" id="re_password" name = "re_password" placeholder="비밀번호 확인">
-                        <br>
-                    </div>
-                    <div class="form-group">
-                        <label for="nickname">닉네임을 입력하세요</label>
-                        <br>
-                        <input type="nickname" class="form-control" id="nickname" name = "nickname" placeholder="닉네임">
-                        <br>
-                    </div>
-                    <button type="submit" class="btn btn-primary">가입하기</button>
-                </form>
-
-            </div>
-        </div>
+    <div class="signup">
+        <form action="" method="post">
+            {% csrf_token %}
+            {% for field in signup_form %}
+                <div class="form-group{% if field.errors %} has-error{% endif %}">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {% if field.errors %}
+                        {% for error in field.errors %}
+                        <span class="help-block">{{ error }}</span>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            {% endfor %}
+    
+            {% if signup_form.non_field_errors %}
+                {% for error in login_form.non_field_errors %}
+                <p class="text-danger"><b>{{ error }}</b></p>
+                {% endfor %}
+            {% endif %}
+            <button class="btn btn-primary">회원가입</button>
+        </form>
+    </div>
     </div>
 {% endblock %}

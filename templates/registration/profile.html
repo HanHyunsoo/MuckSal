@@ -1,12 +1,28 @@
 {% extends 'community/layout.html' %}
+{% load static %}
+
+
+{% block extrahead %}
+    <title>Profile</title>
+    <link rel='stylesheet' href="{% static 'accounts/css/profile.css'%}">
+{% endblock %}
 
 {% block content %}
+<div class="container">
     <h1 class="text-center">회원정보 변경</h1>
     <form method="POST" enctype="multipart/form-data">
+        <div id="label_container">
         {% csrf_token %}
-        {{ profile_form.as_p }}
+        <label>닉네임 변경 : {{ profile_form.nickname }} </label>
+        <br><br>
+        <label>자기 소개 : {{ profile_form.description }}</label>
+        <br><br>
+        <label>프로필 사진 {{ profile_form.image }}</label>
+        <br><br>
+        </div>
         <button type="submit" class="btn btn-primary">수정</button>
         
     </form>
     <button type="submit" class="btn btn-primary" onclick="location.href='/accounts/changePassword'">비밀번호 변경 </button>
+</div>
 {% endblock %}
