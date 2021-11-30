@@ -19,7 +19,7 @@
     display : flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 180px;
+    padding-top: 140px;
 }
 
 .inner_content{
@@ -122,6 +122,7 @@ a:visited{
     font-size: 15px;
     padding : 5px;
     border-radius: 5px;
+    margin-right : 25px;
 }
 
 .page{
@@ -159,11 +160,9 @@ a:visited{
     height: 30px;
     border-radius: 3px; 
     float : right;
-    display : flex;
+    display : block;
     justify-content: center;
-    margin-top : 103px;
-    
-    
+    display : flex;
 }
 
 #x{
@@ -237,12 +236,13 @@ li{
     text-align: center;
     border-radius: 5px;
     padding : 5px;
+    
 }
 
 .button_contain{
     width:  100px;
     float : right;
-    margin-right: 300px;
+    display : inherit;
 }
 
 .left_image{
@@ -274,4 +274,28 @@ li{
 .real_side_content{
     padding : 20px;
 }
+.cook_share{
+    margin : 70px;
+    font-size : 30px;
+}
 
+form{
+    margin-right: 20px;
+}
+
+.search_button{
+    font-size:13px;
+    border:none;
+    background-color: white;
+}
+
+.search_div{
+    width : 200px;
+    height: 20px;
+}
+#left_image{
+    float: left;
+    width : 70%;
+    height: 100%;
+    overflow : scroll;
+}

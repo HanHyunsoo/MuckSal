@@ -10,21 +10,39 @@
     <div class="form">
         <form action="{% url 'community:create' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <div>
-                제목  <input type="text" name="title">
+            <div class="title">
+                제목  <input class = "first_title_input" type="text" name="title">
             </div>
             <hr>
             <div>
-                본문  <textarea name ="content" cols="30" rows="10"></textarea>
+                <textarea name ="content" cols="30" rows="10"></textarea>
             </div>
-            <div>
-                이미지 : <input type="file" name ="image" multiple>
+            <div class = "images">
+                이미지 <input type="file" onchange ="readImage(event)" name ="image" multiple> 
+                <div id = "image_container">
+                </div>
             </div>
             <div>
                 작성자 <input type ="text" name="writer">
+                <hr>
             </div>
             <button type="submit">작성</button>
         </form>
     </div>
+    <script>
+        function readImage(input){
+
+                const reader = new FileReader();
+
+                reader.onload = function(event) {
+                    var img = document.createElement("img");
+                    img.setAttribute("src", event.target.result);
+                    document.querySelector("div#image_container").appendChild(img);
+                };
+
+                reader.readAsDataURL(event.target.files[0]);
+            
+        }
+    </script>
 </body>
 {% endblock %}
