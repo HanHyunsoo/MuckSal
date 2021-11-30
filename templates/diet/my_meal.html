@@ -4,6 +4,7 @@
 {% block content %}
     <link rel="stylesheet" href="{% static 'diet/my_meal.css' %}">
     <div id="main">
+        <button type="button" style="display: block; margin: auto" onclick="location.href='{% url 'diet:create' %}'">식단 추가하기</button>
         <hr>
     {% for planner in planners %}
             <div class="meal_planner">
