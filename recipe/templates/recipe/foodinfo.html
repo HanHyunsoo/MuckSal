@@ -1,12 +1,32 @@
 {% extends 'community/layout.html' %}
+{% load static %}
+{% block extrahead %}
+<link rel='stylesheet' href="{% static 'recipe/css/foodinfo.css'%}">
+{% endblock %}
 {% block content %}
-<div style="text-align: center;">
+{{food.click}}
+<div>
 <section class = "page-section" id = "services">
     <div class ="container px-4 px-lg-5">
-        <h2 class ="text-center mt-0">음식 이름 : {{ food.title }} </h2>
-        <hr class = "divider" />
-        <p> 조리법 : {{ food.body }}</p>
+        <h2 class ="fdname">{{ food.title }} 의 레시피 입니다.</h2>
+        <br><br><br>
+        <table>
+            <td>
+                <tr>
+                    <h3>요리 재료입니다.</h3>
+                    <table>
+                        <tr>
+                            <p>{{ food.ingredient }}</p>
+                        </tr>
+                    </table>
+                    <h3> 조리 방법 </h3>
+                    <p> {{ food.body }}</p>
+                </tr>
+            </td>
+        </table>
+
     </div>
 </section>
+<a href="{% url 'recipe:list' %}">레시피 목록으로 이동하기</a>
 </div>
 {% endblock %}

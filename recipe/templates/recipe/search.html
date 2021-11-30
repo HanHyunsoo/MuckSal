@@ -1,23 +1,41 @@
 {% extends 'community/layout.html' %}
+{% load static %}
+{% block extrahead %}
+<link rel='stylesheet' href="{% static 'recipe/css/search.css'%}">
+{% endblock %}
 {% block content %}
 {% if not foods %}
-<div style="text-align: center; text-align: center;">
+<div>
 <h1>검색 결과가 없습니다</h1>
 
 {% else %}
 
-{% for food in foods.all %}
-<div class="container" style="text-align: center;"> 
-    <div class="card">
-        <div class="card-body">
-            <h1>{{ food.title }}</h1>
-            <a href="{% url 'recipe:foodinfo' food.id %}"> 자세히 보기</a> 
+<div>
+    <h1 style="text-align: center;">
+        검색 결과입니다.
+    </h1>
+    <table style="text-align: center;">
+        <thead>
+            <th style="text-align: center;">메뉴</th>
+        </thead>
+    </table>
+    {% for food in foods.all %}
+    <tbody>
+    <div class="container" style="text-align: center;"> 
+        <div class="card">
+            <div class="card-body">
+                <td>
+                <br><br><br>
+                <h2>{{ food.title }}</h2>
+                <a href="{% url 'recipe:foodinfo' food.id %}"> 자세히 보기</a> 
+                </td>
+            </div>
         </div>
     </div>
+    </tbody>
+    <br>
+    {% endfor %}
+    
+    {% endif %}
+    {% endblock %}
 </div>
-<br>
-{% endfor %}
-
-{% endif %}
-</div>
-{% endblock %}

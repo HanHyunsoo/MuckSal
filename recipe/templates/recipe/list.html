@@ -1,31 +1,58 @@
 {% extends 'community/layout.html' %}
+{% load static %}
+{% block extrahead %}
+<link rel='stylesheet' href="{% static 'recipe/css/list.css'%}">
+{% endblock %}
 {% block content %}
 <html>
     <head>
         <title>음식 목록</title>
+        <style>
+            td {
+                border: 1px solid gray;
+            }
+            #retabl {
+                width: 850px;
+            }
+            #rename {
+                width: 850px;
+            }
+        </style>
     </head>
     <body>
-        <h1 style="margin: 55px;">게시판 페이지입니다</h1>
+        <h1 style="margin: 55px;">자신만의 레시피를 공유해 보세요!</h1>
         
-        <div style="float: left; margin: 25px;">
-        <a href="{% url 'recipe:create' %}"> 작성하기 </a>
-        <form class="form-inline my-2 my-lg-0" action="{% url 'recipe:search' %}" method="post">
-            {% csrf_token %}
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q" value="{{q}}">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-            <hr>
-        </div>
 
+        <table id="retable">
+            <thead>
+                <tr>
+                    <th>레시피</th>
+                    <th>조회수</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for food in foods.all %}
 
-        {% for foods in foods.all %}
-            <div style="margin: 50px; float: left;">
-            
-                <a href="{% url 'recipe:foodinfo' foods.id %}" style="border-style: solid; border-width: 5px; padding: 30px; width: 350px; height: 350px;">{{ foods.title }}</a>
-                </div>
-            
+                <tr>
+                    <td id="rename">    
+                    <a href="{% url 'recipe:foodinfo' food.id %}">{{ food.title }}</a>
+                </td>
+                <td>
+                    {{food.hits}}
+                </td>
+                </tr>
         {% endfor %}
-
+        </tbody>
+        </table>
+        <div style="margin: 25px;">
+            <a href="{% url 'recipe:create' %}"> 작성하기 </a>
+            <form class="form-inline my-2 my-lg-0" action="{% url 'recipe:search' %}" method="post">
+                {% csrf_token %}
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q" value="{{q}}">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+                <hr>
+            </div>
     </body>
 </html>
 {% endblock %}
